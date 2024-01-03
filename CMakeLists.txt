@@ -22,7 +22,7 @@ include(cmake/EnforceOutOfSourceBuilds.cmake)
 add_executable(app)
 
 target_sources(app
-    PRIVATE main.cpp
+    PRIVATE src/main.cpp
 )
 
 target_compile_features(app 
