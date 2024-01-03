@@ -1,19 +1,24 @@
 #include <cstdlib>
 #include <iostream>
 
+struct Image
+{
+    int width;
+    int height;
+};
+
 int main()
 {
-    int imageWidth = 256;
-    int imageHeight = 256;
+    Image img { .width = 256, .height = 256 };
 
-    std::cout << "P3\n" << imageWidth << ' ' << imageHeight << "\n255\n";
+    std::cout << "P3\n" << img.width << ' ' << img.height << "\n255\n";
 
-    for (int j = 0; j < imageHeight; ++j) 
+    for (int j = 0; j < img.height; ++j) 
     {
-        for (int i = 0; i < imageWidth; ++i) 
+        for (int i = 0; i < img.width; ++i) 
         {
-            auto r = static_cast<double>(i) / (imageWidth - 1);
-            auto g = static_cast<double>(j) / (imageHeight - 1);
+            auto r = static_cast<double>(i) / (img.width - 1);
+            auto g = static_cast<double>(j) / (img.height - 1);
             auto b = 0;
 
             auto ir = static_cast<int>(255.999 * r);
