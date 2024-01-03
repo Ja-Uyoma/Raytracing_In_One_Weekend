@@ -2,6 +2,7 @@
 #define VEC3_HPP
 
 #include <array>
+#include <cassert>
 #include <cmath>
 #include <iostream>
 
@@ -43,6 +44,13 @@ namespace rt
         constexpr double z() const noexcept
         {
             return e[2];
+        }
+
+        /// @brief Get the negation of this vector
+        /// @return The negation of this vector
+        constexpr Vec3 operator-() const noexcept
+        {
+            return Vec3(-e[0], -e[1], -e[2]);
         }
     };
 }
