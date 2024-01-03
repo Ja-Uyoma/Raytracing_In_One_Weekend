@@ -52,6 +52,26 @@ namespace rt
         {
             return Vec3(-e[0], -e[1], -e[2]);
         }
+
+        /// @brief Access the element at the given index
+        /// @param i The index of the element in the vector
+        /// @pre The index must be within the valid range
+        /// @return The element at the given index
+        constexpr double operator[](int i) const noexcept
+        {
+            assert(i >= 0 and i <= 2);      
+            return e[i];
+        }
+
+        /// @brief Access the element at the given index
+        /// @param i The index of the element in the vector
+        /// @pre The index must be within the valid range
+        /// @return The element at the given index
+        double& operator[](int i) noexcept
+        {
+            assert(i >= 0 and i <= 2);
+            return e[i];
+        }
     };
 }
 
