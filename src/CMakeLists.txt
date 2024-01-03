@@ -1,7 +1,7 @@
 add_executable(app)
 
 target_sources(app
-    PRIVATE main.cpp
+    PRIVATE main.cpp Main.cpp
 )
 
 target_compile_features(app 
