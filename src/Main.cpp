@@ -17,6 +17,8 @@ namespace rt
 
         for (int j = 0; j < img.height; ++j) 
         {
+            std::clog << "\rScanlines remaining: " << (img.height - j) << '\n' << std::flush;
+
             for (int i = 0; i < img.width; ++i) 
             {
                 auto r = static_cast<double>(i) / (img.width - 1);
@@ -30,5 +32,7 @@ namespace rt
                 std::cout << ir << ' ' << ig << ' ' << ib << '\n';
             }
         }
+
+        std::clog << "\rDone.            \n";
     }
 }
