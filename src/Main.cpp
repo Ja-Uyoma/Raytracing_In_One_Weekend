@@ -1,3 +1,5 @@
+#include "Vec3.hpp"
+
 #include <iostream>
 
 namespace rt

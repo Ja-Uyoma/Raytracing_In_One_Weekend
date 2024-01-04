@@ -90,7 +90,7 @@ namespace rt
         /// @return This vector after it has been scaled by the given constant
         Vec3& operator*=(double t) noexcept
         {
-            for (auto const& elem : e) {
+            for (auto& elem : e) {
                 elem *= t;
             }
 
