@@ -35,6 +35,14 @@ namespace rt
             return m_direction;
         }
 
+        /// @brief Get the point a given distance from the ray's origin
+        /// @param t The distance from the ray's origin
+        /// @return The point at the given distance from the ray's origin
+        constexpr Point3 at(double t) const noexcept
+        {
+            return m_origin + (t * m_direction);
+        }
+
     private:
         Point3 m_origin;
         Vec3 m_direction;
