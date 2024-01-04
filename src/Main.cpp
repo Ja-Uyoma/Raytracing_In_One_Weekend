@@ -1,4 +1,3 @@
-#include "Vec3.hpp"
 #include "Colour.hpp"
 
 #include <iostream>
