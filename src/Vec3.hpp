@@ -224,6 +224,14 @@ namespace rt
             u.e[0] * v.e[1] - u.e[1] * v.e[0]
         );
     }
+
+    /// @brief Get the unit vector of the given vector
+    /// @param v The vector whose unit vector is to be computed
+    /// @return The unit vector of the given vector
+    constexpr Vec3 getUnitVector(Vec3 const& v) noexcept
+    {
+        return v / v.length();
+    }
 }
 
 #endif
