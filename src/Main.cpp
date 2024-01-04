@@ -1,4 +1,5 @@
 #include "Vec3.hpp"
+#include "Colour.hpp"
 
 #include <iostream>
 
@@ -23,15 +24,13 @@ namespace rt
 
             for (int i = 0; i < img.width; ++i) 
             {
-                auto r = static_cast<double>(i) / (img.width - 1);
-                auto g = static_cast<double>(j) / (img.height - 1);
-                auto b = 0;
+                auto pixelColour = Colour(
+                    static_cast<double>(i) / (img.width - 1),
+                    static_cast<double>(j) / (img.height - 1),
+                    0
+                );
 
-                auto ir = static_cast<int>(255.999 * r);
-                auto ig = static_cast<int>(255.999 * g);
-                auto ib = static_cast<int>(255.999 * b);
-
-                std::cout << ir << ' ' << ig << ' ' << ib << '\n';
+                writeColour(std::cout, pixelColour);
             }
         }
 
