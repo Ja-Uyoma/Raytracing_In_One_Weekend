@@ -104,6 +104,20 @@ namespace rt
         {
             return *this *= (1 / t);
         }
+
+        /// @brief Get the length of this vector
+        /// @return The length of the vector
+        constexpr double length() const noexcept
+        {
+            return std::sqrt(lengthSquared());
+        }
+
+        /// @brief Get the sum of the squares of the components of this vector
+        /// @return The sum of the squares of the components of this vector
+        constexpr double lengthSquared() const noexcept
+        {
+            return (e[0] * e[0]) + (e[1] * e[1]) + (e[2] * e[2]);
+        }
     };
 }
 
