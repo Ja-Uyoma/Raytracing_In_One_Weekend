@@ -211,6 +211,19 @@ namespace rt
             u.e[2] + v.e[2]
         );
     }
+
+    /// @brief Get the cross product of 2 given vectors
+    /// @param u The first vector in the operation
+    /// @param v The second vector in the operation
+    /// @return The cross product of the 2 vectors
+    constexpr Vec3 cross(Vec3 const& u, Vec3 const& v) noexcept
+    {
+        return Vec3(
+            u.e[1] * v.e[2] - u.e[2] * v.e[1],
+            u.e[2] * v.e[0] - u.e[0] * v.e[2],
+            u.e[0] * v.e[1] - u.e[1] * v.e[0]
+        );
+    }
 }
 
 #endif
