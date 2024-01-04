@@ -91,7 +91,7 @@ namespace rt
         Vec3& operator*=(double t) noexcept
         {
             for (auto const& elem : e) {
-                e *= t;
+                elem *= t;
             }
 
             return *this;
