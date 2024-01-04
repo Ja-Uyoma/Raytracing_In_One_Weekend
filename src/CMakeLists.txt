@@ -14,6 +14,7 @@ target_sources(app
     PUBLIC 
         "${includeDir}/Vec3.hpp" 
         "${includeDir}/Colour.hpp"
+        "${includeDir}/Ray.hpp"
 )
 
 target_compile_features(app 
