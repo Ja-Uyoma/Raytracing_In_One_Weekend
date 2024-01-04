@@ -2,6 +2,7 @@ add_executable(app)
 
 target_sources(app
     PRIVATE main.cpp Main.cpp
+    PUBLIC Vec3.hpp
 )
 
 target_compile_features(app 
