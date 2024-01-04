@@ -13,7 +13,7 @@ namespace rt
     /// @brief Render a 256 px by 256 px PPM image
     void renderImage() 
     {
-        Image img { .width = 256, .height = 256 };
+        constexpr Image img { .width = 256, .height = 256 };
 
         std::cout << "P3\n" << img.width << ' ' << img.height << "\n255\n";
 
