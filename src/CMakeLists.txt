@@ -1,8 +1,14 @@
 add_executable(app)
 
+set(includeDir "${CMAKE_SOURCE_DIR}/include")
+
+target_include_directories(app
+    PUBLIC "${includeDir}"
+)
+
 target_sources(app
     PRIVATE main.cpp Main.cpp
-    PUBLIC Vec3.hpp Colour.hpp
+    PUBLIC "${includeDir}/Vec3.hpp" "${includeDir}/Colour.hpp"
 )
 
 target_compile_features(app 
