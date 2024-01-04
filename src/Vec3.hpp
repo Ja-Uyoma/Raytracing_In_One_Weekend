@@ -198,6 +198,19 @@ namespace rt
     {
         return (1 / t) * v;
     }
+
+    /// @brief Get the dot product of 2 given vectors
+    /// @param u The first vector in the operation
+    /// @param v The second vector in the operation
+    /// @return The dot product of the 2 vectors
+    constexpr double dot(Vec3 const& u, Vec3 const& v) noexcept
+    {
+        return (
+            u.e[0] * v.e[0] + 
+            u.e[1] * v.e[1] +
+            u.e[2] + v.e[2]
+        );
+    }
 }
 
 #endif
