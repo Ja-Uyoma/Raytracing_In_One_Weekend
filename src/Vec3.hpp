@@ -167,6 +167,37 @@ namespace rt
             u.e[2] * v.e[2]
         );
     }
+
+    /// @brief Get a new vector equal to the given vector scaled by the given constant
+    /// @param t The scaling factor
+    /// @param v The vector to be scaled
+    /// @return A new vector equal to the given vector scaled by the given scaling factor
+    constexpr Vec3 operator*(double t, Vec3 const& v) noexcept
+    {
+        return Vec3(
+            t * v.e[0],
+            t * v.e[1],
+            t * v.e[2]
+        );
+    }
+
+    /// @brief Get a new vector equal to the given vector scaled by the given constant
+    /// @param t The scaling factor
+    /// @param v The vector to be scaled
+    /// @return A new vector equal to the given vector scaled by the given scaling factor
+    constexpr Vec3 operator*(Vec3 const& v, double t) noexcept
+    {
+        return t * v;
+    }
+
+    /// @brief Get a new vector equal to the given vector scaled by the given constant
+    /// @param t The scaling factor
+    /// @param v The vector to be scaled
+    /// @return A new vector equal to the given vector scaled by the given scaling factor
+    constexpr Vec3 operator/(Vec3 const& v, double t) noexcept
+    {
+        return (1 / t) * v;
+    }
 }
 
 #endif
