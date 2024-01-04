@@ -21,6 +21,20 @@ namespace rt
         {
         }
 
+        /// @brief Get the origin of this ray
+        /// @return The origin of the ray
+        constexpr Point3 const& getOrigin() const noexcept
+        {
+            return m_origin;
+        }
+
+        /// @brief Get the direction this ray is travelling towards
+        /// @return The direction the ray is travelling towards
+        constexpr Vec3 const& getDirection() const noexcept
+        {
+            return m_direction;
+        }
+
     private:
         Point3 m_origin;
         Vec3 m_direction;
