@@ -203,7 +203,7 @@ namespace rt
     /// @param u The first vector in the operation
     /// @param v The second vector in the operation
     /// @return The dot product of the 2 vectors
-    constexpr double dot(Vec3 const& u, Vec3 const& v) noexcept
+    constexpr double getDotProduct(Vec3 const& u, Vec3 const& v) noexcept
     {
         return (
             u.e[0] * v.e[0] + 
