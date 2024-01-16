@@ -20,3 +20,4 @@ project(RaytracingInOneWeekend
 include(cmake/EnforceOutOfSourceBuilds.cmake)
 
 add_subdirectory(src)
+add_subdirectory(tests)
