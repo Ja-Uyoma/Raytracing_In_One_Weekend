@@ -92,3 +92,13 @@ TEST_CASE("Scalar multiplication is performed component-wise", "[Vec3]")
     REQUIRE(vec[1] == (2 * 4));
     REQUIRE(vec[2] == (3 * 4));
 }
+
+TEST_CASE("Scalar division is performed component-wise", "[Vec3]")
+{
+    auto vec = Vec3(1, 2, 3);
+    vec /= 2;
+
+    REQUIRE(vec[0] == 0.5);
+    REQUIRE(vec[1] == 1.0);
+    REQUIRE(vec[2] == 1.5);
+}
