@@ -50,3 +50,13 @@ TEST_CASE("Accessors work as intended", "[Vec3]")
         REQUIRE(vec.z() != vec[1]);
     }
 }
+
+TEST_CASE("Negation is applied component-wise", "[Vec3]")
+{
+    constexpr auto vec = Vec3(1, 2, 3);
+    constexpr auto negVec = -vec;
+
+    REQUIRE(vec[0] == -negVec[0]);
+    REQUIRE(vec[1] == -negVec[1]);
+    REQUIRE(vec[2] == -negVec[2]);
+}
