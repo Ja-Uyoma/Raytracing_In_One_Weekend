@@ -82,3 +82,13 @@ TEST_CASE("Addition is performed component-wise", "[Vec3]")
         REQUIRE(second[2] == (6 + 3));
     }
 }
+
+TEST_CASE("Scalar multiplication is performed component-wise", "[Vec3]")
+{
+    auto vec = Vec3(1, 2, 3);
+    vec *= 4;
+
+    REQUIRE(vec[0] == (1 * 4));
+    REQUIRE(vec[1] == (2 * 4));
+    REQUIRE(vec[2] == (3 * 4));
+}
