@@ -60,3 +60,25 @@ TEST_CASE("Negation is applied component-wise", "[Vec3]")
     REQUIRE(vec[1] == -negVec[1]);
     REQUIRE(vec[2] == -negVec[2]);
 }
+
+TEST_CASE("Addition is performed component-wise", "[Vec3]")
+{
+    constexpr auto first = Vec3(1, 2, 3);
+    auto second = Vec3(4, 5, 6);
+    
+    SECTION("values before addition")
+    {
+        REQUIRE(second[0] == 4);
+        REQUIRE(second[1] == 5);
+        REQUIRE(second[2] == 6);
+    }
+
+    SECTION("values after addition")
+    {
+        second += first;
+
+        REQUIRE(second[0] == (4 + 1));
+        REQUIRE(second[1] == (5 + 2));
+        REQUIRE(second[2] == (6 + 3));
+    }
+}
