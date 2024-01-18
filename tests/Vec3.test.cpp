@@ -1,5 +1,6 @@
 #include "Vec3.hpp"
 
+#include <cmath>
 #include <catch2/catch_test_macros.hpp>
 
 using rt::Vec3;
@@ -104,4 +105,11 @@ TEST_CASE("Scalar operations are performed component-wise", "[Vec3]")
         REQUIRE(vec[1] == (2.0 / 2.0));
         REQUIRE(vec[2] == (3.0 / 2.0));
     }
+}
+
+TEST_CASE("The length is computed", "[Vec3]")
+{
+    constexpr auto vec = Vec3(1, 2, 3);
+
+    REQUIRE(vec.length() == std::sqrt(14));
 }
