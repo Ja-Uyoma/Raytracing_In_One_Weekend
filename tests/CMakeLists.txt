@@ -15,8 +15,9 @@ target_include_directories(tests
 )
 
 target_sources(tests
-    PRIVATE 
+    PUBLIC 
         Vec3.test.cpp
+        Ray.test.cpp
     PUBLIC
         "${includeDir}/Vec3.hpp"
 )
