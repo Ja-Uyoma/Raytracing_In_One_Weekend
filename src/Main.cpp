@@ -1,4 +1,5 @@
 #include "Colour.hpp"
+#include "Ray.hpp"
 
 #include <iostream>
 
@@ -9,6 +10,14 @@ namespace rt
         int width;
         int height;
     };
+
+    /// \brief Get the colour for a given scene ray
+    /// \param[in] ray A ray for a scene
+    /// \returns The colour for a given scene ray
+    constexpr Colour getRayColour([[maybe_unused]] Ray const& ray) noexcept
+    {
+        return Colour(0, 0, 0);
+    }
 
     /// @brief Render a 256 px by 256 px PPM image
     void renderImage() 
