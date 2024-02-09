@@ -17,7 +17,10 @@ namespace rt
     /// \returns The colour for a given scene ray
     constexpr Colour getRayColour([[maybe_unused]] Ray const& ray) noexcept
     {
-        return Colour(0, 0, 0);
+        auto unitDirection = getUnitVector(ray.getDirection());
+        auto a = 0.5 * (unitDirection.y() + 1.0);
+
+        return (1.0 - a) * Colour(1.0, 1.0, 1.0) + a * Colour(.05, 0.7, 1.0);
     }
 
     /// @brief Render a 256 px by 256 px PPM image
