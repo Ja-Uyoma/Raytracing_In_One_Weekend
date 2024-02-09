@@ -47,6 +47,10 @@ namespace rt
         auto viewportU = Vec3(viewportWidth, 0, 0);
         auto viewportV = Vec3(0, -viewportHeight, 0);
 
+        // Calculate the horizontal and vertical delta vectors from pixel to pixel
+        auto pixelDeltaU = viewportU / img.width;
+        auto pixelDeltaV = viewportV / img.height;
+
 
         std::cout << "P3\n" << img.width << ' ' << img.height << "\n255\n";
 
