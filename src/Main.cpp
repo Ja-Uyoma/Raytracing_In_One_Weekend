@@ -37,6 +37,12 @@ namespace rt
             return height;
         });
 
+        // Camera
+        constexpr auto focalLength { 1.0 };
+        constexpr auto viewportHeight { 2.0 };
+        auto viewportWidth = viewportHeight * (static_cast<double>(img.width) / img.height);
+        constexpr auto cameraCenter = Point3(0, 0, 0);
+
 
         std::cout << "P3\n" << img.width << ' ' << img.height << "\n255\n";
 
