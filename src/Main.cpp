@@ -63,12 +63,11 @@ namespace rt
 
             for (int i = 0; i < img.width; ++i) 
             {
-                auto pixelColour = Colour(
-                    static_cast<double>(i) / (img.width - 1),
-                    static_cast<double>(j) / (img.height - 1),
-                    0
-                );
+                auto pixelCenter = pixel00Loc + (i * pixelDeltaU) + (j * pixelDeltaV);
+                auto rayDirection = pixelCenter - cameraCenter;
+                auto ray = Ray(cameraCenter, rayDirection);
 
+                auto pixelColour = Colour(getRayColour(ray));
                 writeColour(std::cout, pixelColour);
             }
         }
