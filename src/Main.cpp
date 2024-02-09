@@ -2,6 +2,7 @@
 #include "Ray.hpp"
 
 #include <iostream>
+#include <functional>
 
 namespace rt
 {
@@ -22,7 +23,20 @@ namespace rt
     /// @brief Render a 256 px by 256 px PPM image
     void renderImage() 
     {
-        constexpr Image img { .width = 256, .height = 256 };
+        constexpr auto aspectRatio = 16.0 / 9.0;
+        
+        Image img;
+        img.width = 400;
+        img.height = std::invoke([&img] {
+            auto height = static_cast<int>(img.width / aspectRatio);
+
+            if (height < 1) {
+                height = 1;
+            }
+
+            return height;
+        });
+
 
         std::cout << "P3\n" << img.width << ' ' << img.height << "\n255\n";
 
