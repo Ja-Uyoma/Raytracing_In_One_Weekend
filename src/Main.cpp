@@ -43,6 +43,10 @@ namespace rt
         auto viewportWidth = viewportHeight * (static_cast<double>(img.width) / img.height);
         constexpr auto cameraCenter = Point3(0, 0, 0);
 
+        // Calculate the vectors across the horizontal and down the vertical viewport edges
+        auto viewportU = Vec3(viewportWidth, 0, 0);
+        auto viewportV = Vec3(0, -viewportHeight, 0);
+
 
         std::cout << "P3\n" << img.width << ' ' << img.height << "\n255\n";
 
