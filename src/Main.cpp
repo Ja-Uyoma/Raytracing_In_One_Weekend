@@ -51,6 +51,9 @@ namespace rt
         auto pixelDeltaU = viewportU / img.width;
         auto pixelDeltaV = viewportV / img.height;
 
+        // Calculate the location of the upper-left pixel
+        auto viewportUpperLeft = cameraCenter - Vec3(0, 0, focalLength) - (viewportU / 2) - (viewportV / 2);
+        auto pixel00Loc = viewportUpperLeft + 0.5 * (pixelDeltaU + pixelDeltaV);
 
         std::cout << "P3\n" << img.width << ' ' << img.height << "\n255\n";
 
