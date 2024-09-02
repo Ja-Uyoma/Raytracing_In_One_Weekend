@@ -1,10 +1,7 @@
 add_executable(app)
 
-set(includeDir "${CMAKE_SOURCE_DIR}/include")
-
 target_include_directories(app
     PUBLIC 
-        "${includeDir}"
         "${PROJECT_SOURCE_DIR}/src/Ray"
         "${PROJECT_SOURCE_DIR}/src/Vec3"
 )
