@@ -25,8 +25,6 @@
 #ifndef COLOUR_HPP
 #define COLOUR_HPP
 
-#include "Vec3.hpp"
-
 #include <array>
 #include <iostream>
 
