@@ -33,8 +33,6 @@
 namespace rt::vec3 {
 class Vec3 {
 public:
-  std::array<double, 3> e{0, 0, 0};
-
   /// @brief Default constructor
   explicit constexpr Vec3() noexcept = default;
 
@@ -181,6 +179,9 @@ public:
   friend constexpr Vec3 operator/(Vec3 const &v, double t) noexcept {
     return (1 / t) * v;
   }
+
+private:
+  std::array<double, 3> e{0, 0, 0};
 };
 
 /// @brief Get the dot product of 2 given vectors
