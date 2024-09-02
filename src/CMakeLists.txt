@@ -11,9 +11,9 @@ target_sources(app
     PRIVATE 
         main.cpp 
         Main.cpp
+        "${PROJECT_SOURCE_DIR}/src/Colour/Colour.hpp"
     PUBLIC 
         "${includeDir}/Vec3.hpp" 
-        "${includeDir}/Colour.hpp"
         "${includeDir}/Ray.hpp"
 )
 
