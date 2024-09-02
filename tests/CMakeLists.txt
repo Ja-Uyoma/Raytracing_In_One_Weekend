@@ -8,7 +8,7 @@ target_link_libraries(tests
 )
 
 target_include_directories(tests
-    PUBLIC
+    PRIVATE
         "${PROJECT_SOURCE_DIR}/src/Ray"
         "${PROJECT_SOURCE_DIR}/src/Vec3"
 )

@@ -1,13 +1,13 @@
 add_executable(app)
 
 target_include_directories(app
-    PUBLIC 
+    PRIVATE 
         "${PROJECT_SOURCE_DIR}/src/Ray"
         "${PROJECT_SOURCE_DIR}/src/Vec3"
 )
 
 target_sources(app
-    PRIVATE 
+    PRIVATE
         main.cpp 
         Main.cpp
     PUBLIC 
