@@ -27,11 +27,53 @@
 
 #include "Vec3.hpp"
 
+#include <array>
 #include <iostream>
 
 namespace rt::colour {
 
-using Colour = vec3::Vec3;
+class Colour {
+public:
+  /**
+   * @brief Create a default Colour instance
+   *
+   */
+  explicit constexpr Colour() noexcept = default;
+
+  /**
+   * @brief Create a Colour instance with the specified r, g, and b values
+   *
+   * @param[in] r The red colour value
+   * @param[in] b The blue colour value
+   * @param[in] g The green colour value
+   */
+  explicit constexpr Colour(double r, double g, double b) noexcept
+      : m_data{r, g, b} {}
+
+  /**
+   * @brief Get the red Colour value
+   *
+   * @return The red Colour value
+   */
+  constexpr double const &r() const noexcept { return m_data[0]; }
+
+  /**
+   * @brief Get the green Colour value
+   *
+   * @return The green Colour value
+   */
+  constexpr double const &g() const noexcept { return m_data[1]; }
+
+  /**
+   * @brief Get the blue Colour value
+   *
+   * @return The blue Colour value
+   */
+  constexpr double const &b() const noexcept { return m_data[2]; }
+
+private:
+  std::array<double, 3> m_data{0, 0, 0};
+};
 
 /// @brief Write the value of each colour component to the given output stream
 /// @param out The output stream to write to
