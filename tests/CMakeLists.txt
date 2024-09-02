@@ -14,7 +14,7 @@ target_include_directories(tests
 )
 
 target_sources(tests
-    PUBLIC 
+    PRIVATE
         Vec3.test.cpp
         Ray.test.cpp
 )
