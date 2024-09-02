@@ -37,7 +37,7 @@ TEST_CASE("at gets the point a given distance from the ray origin", "[Ray]") {
   SECTION("All points lie on the origin regardless of distance for a "
           "default-constructed Ray") {
     constexpr auto ray = Ray();
-    REQUIRE(ray.at(2) == vec3::Vec3(0, 0, 0));
+    REQUIRE((ray.at(2) == vec3::Vec3(0, 0, 0)) == true);
   }
 
   SECTION(
@@ -46,7 +46,7 @@ TEST_CASE("at gets the point a given distance from the ray origin", "[Ray]") {
     constexpr auto direction = Point3(4, 5, 6);
     constexpr auto ray = Ray(origin, direction);
 
-    REQUIRE(ray.at(2) == vec3::Vec3(9, 12, 15));
+    REQUIRE((ray.at(2) == vec3::Vec3(9, 12, 15)) == true);
   }
 }
 } // namespace rt::ray
