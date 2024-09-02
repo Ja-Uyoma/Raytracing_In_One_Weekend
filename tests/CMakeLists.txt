@@ -21,8 +21,7 @@ target_sources(tests
         Vec3.test.cpp
         Ray.test.cpp
         "${PROJECT_SOURCE_DIR}/src/Ray/Ray.hpp"
-    PUBLIC
-        "${includeDir}/Vec3.hpp"
+        "${PROJECT_SOURCE_DIR}/src/Vec3/Vec3.hpp"
 )
 
 target_compile_features(tests

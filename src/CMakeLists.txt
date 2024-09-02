@@ -15,8 +15,8 @@ target_sources(app
         Main.cpp
         "${PROJECT_SOURCE_DIR}/src/Colour/Colour.hpp"
         "${PROJECT_SOURCE_DIR}/src/Ray/Ray.hpp"
+        "${PROJECT_SOURCE_DIR}/src/Vec3/Vec3.hpp"
     PUBLIC 
-        "${includeDir}/Vec3.hpp" 
 )
 
 target_compile_features(app 
