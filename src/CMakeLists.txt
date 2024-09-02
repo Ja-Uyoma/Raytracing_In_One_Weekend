@@ -10,6 +10,7 @@ target_sources(app
     PRIVATE
         main.cpp 
         Main.cpp
+        "${PROJECT_SOURCE_DIR}/src/Colour/Colour.cpp"
 )
 
 target_compile_features(app 
