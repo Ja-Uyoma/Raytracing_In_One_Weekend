@@ -36,13 +36,14 @@ public:
   std::array<double, 3> e{0, 0, 0};
 
   /// @brief Default constructor
-  constexpr Vec3() noexcept = default;
+  explicit constexpr Vec3() noexcept = default;
 
   /// @brief Constructor
   /// @param e0 The x-coordinate of the 3d vector
   /// @param e1 The y-coordinate of the 3d vector
   /// @param e2 The z-coordinate of the 3d vector
-  constexpr Vec3(double e0, double e1, double e2) noexcept : e{e0, e1, e2} {}
+  explicit constexpr Vec3(double e0, double e1, double e2) noexcept
+      : e{e0, e1, e2} {}
 
   /// @brief Get the x-coordinate of the vector
   /// @return The x-coordinate of the vector
