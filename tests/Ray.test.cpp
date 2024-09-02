@@ -1,4 +1,5 @@
 #include "Ray.hpp"
+#include "Vec3.hpp"
 
 #include <catch2/catch_test_macros.hpp>
 
