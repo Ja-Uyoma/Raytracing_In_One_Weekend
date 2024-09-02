@@ -180,6 +180,14 @@ public:
     return (1 / t) * v;
   }
 
+  /// @brief Compare two Vec3 objects for equality
+  /// @param[in] a The first Vec3 object
+  /// @param[in] b The second Vec3 object
+  /// @returns True if they are equal and false otherwise
+  friend constexpr bool operator==(Vec3 const &a, Vec3 const &b) noexcept {
+    return a.x() == b.x() and a.y() == b.y() and a.z() == b.z();
+  }
+
 private:
   std::array<double, 3> e{0, 0, 0};
 };
