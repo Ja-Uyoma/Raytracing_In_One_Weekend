@@ -28,10 +28,6 @@
 #include <catch2/catch_test_macros.hpp>
 
 namespace rt::ray {
-[[nodiscard]]
-constexpr bool operator==(vec3::Vec3 const &a, vec3::Vec3 const &b) noexcept {
-  return (a[0] == b[0] && a[1] == b[1] && a[2] == b[2]);
-}
 
 TEST_CASE("at gets the point a given distance from the ray origin", "[Ray]") {
   SECTION("All points lie on the origin regardless of distance for a "
