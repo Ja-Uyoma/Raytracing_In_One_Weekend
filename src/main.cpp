@@ -1,14 +1,12 @@
 #include <cstdlib>
 #include <iostream>
 
-namespace rt
-{
-    extern void renderImage();
+namespace rt {
+extern void renderImage();
 }
 
-int main()
-{
-    rt::renderImage();
+int main() {
+  rt::renderImage();
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
