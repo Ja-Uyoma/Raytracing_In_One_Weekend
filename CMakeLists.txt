@@ -9,6 +9,8 @@ endif()
 # -std=c++20 and -std=gnu++20 for example when compiling with PCH enabled
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # Set the project name and language
 project(RaytracingInOneWeekend
     VERSION 0.1.1
