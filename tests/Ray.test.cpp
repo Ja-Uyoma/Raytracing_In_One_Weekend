@@ -27,7 +27,7 @@
 
 #include <catch2/catch_test_macros.hpp>
 
-namespace rt {
+namespace rt::ray {
 [[nodiscard]]
 constexpr bool operator==(Vec3 const &a, Vec3 const &b) noexcept {
   return (a[0] == b[0] && a[1] == b[1] && a[2] == b[2]);
@@ -49,4 +49,4 @@ TEST_CASE("at gets the point a given distance from the ray origin", "[Ray]") {
     REQUIRE(ray.at(2) == Vec3(9, 12, 15));
   }
 }
-} // namespace rt
+} // namespace rt::ray

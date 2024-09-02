@@ -27,7 +27,7 @@
 
 #include "Vec3.hpp"
 
-namespace rt {
+namespace rt::ray {
 using Point3 = Vec3;
 
 class Ray {
@@ -60,6 +60,6 @@ private:
   Point3 m_origin;
   Vec3 m_direction;
 };
-} // namespace rt
+} // namespace rt::ray
 
 #endif
