@@ -126,15 +126,15 @@ public:
   friend std::ostream &operator<<(std::ostream &out, Vec3 const &v) noexcept {
     return out << v.e[0] << ' ' << v.e[1] << ' ' << v.e[2];
   }
-};
 
-/// @brief Perform component-wise addition of 2 vectors
-/// @param u The first vector in the sum
-/// @param v The second vector in the sum
-/// @return A new vector equal to the sum of the 2 vectors
-constexpr Vec3 operator+(Vec3 const &u, Vec3 const &v) noexcept {
-  return Vec3(u.e[0] + v.e[0], u.e[1] + v.e[1], u.e[2] + v.e[2]);
-}
+  /// @brief Perform component-wise addition of 2 vectors
+  /// @param u The first vector in the sum
+  /// @param v The second vector in the sum
+  /// @return A new vector equal to the sum of the 2 vectors
+  friend constexpr Vec3 operator+(Vec3 const &u, Vec3 const &v) noexcept {
+    return Vec3(u.e[0] + v.e[0], u.e[1] + v.e[1], u.e[2] + v.e[2]);
+  }
+};
 
 /// @brief Perform component-wise subtraction of 2 vectors
 /// @param u The first vector in the difference
