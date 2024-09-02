@@ -5,6 +5,7 @@ set(includeDir "${CMAKE_SOURCE_DIR}/include")
 target_include_directories(app
     PUBLIC 
         "${includeDir}"
+        "${PROJECT_SOURCE_DIR}/src/Ray"
 )
 
 target_sources(app
