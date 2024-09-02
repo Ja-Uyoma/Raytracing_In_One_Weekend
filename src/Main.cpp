@@ -1,4 +1,4 @@
-#include "Colour.hpp"
+#include "Colour/Colour.hpp"
 
 #include <iostream>
 
