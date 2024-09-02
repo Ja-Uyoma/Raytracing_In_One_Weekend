@@ -118,15 +118,15 @@ public:
   constexpr double lengthSquared() const noexcept {
     return (e[0] * e[0]) + (e[1] * e[1]) + (e[2] * e[2]);
   }
-};
 
-/// @brief Write the given vector to an output stream
-/// @param out The output stream to which the vector is to be written
-/// @param v The vector to be written to the output stream
-/// @return The output stream containing a string representation of the vector
-inline std::ostream &operator<<(std::ostream &out, Vec3 const &v) noexcept {
-  return out << v.e[0] << ' ' << v.e[1] << ' ' << v.e[2];
-}
+  /// @brief Write the given vector to an output stream
+  /// @param out The output stream to which the vector is to be written
+  /// @param v The vector to be written to the output stream
+  /// @return The output stream containing a string representation of the vector
+  friend std::ostream &operator<<(std::ostream &out, Vec3 const &v) noexcept {
+    return out << v.e[0] << ' ' << v.e[1] << ' ' << v.e[2];
+  }
+};
 
 /// @brief Perform component-wise addition of 2 vectors
 /// @param u The first vector in the sum
