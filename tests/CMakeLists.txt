@@ -19,6 +19,7 @@ target_sources(tests
     PUBLIC 
         Vec3.test.cpp
         Ray.test.cpp
+        "${PROJECT_SOURCE_DIR}/src/Ray/Ray.hpp"
     PUBLIC
         "${includeDir}/Vec3.hpp"
 )
