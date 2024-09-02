@@ -1,5 +1,4 @@
 #include <cstdlib>
-#include <iostream>
 
 namespace rt {
 extern void renderImage();
