@@ -10,7 +10,6 @@ target_sources(app
     PRIVATE
         main.cpp 
         Main.cpp
-    PUBLIC 
 )
 
 target_compile_features(app 
