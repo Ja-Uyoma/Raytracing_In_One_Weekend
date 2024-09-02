@@ -22,14 +22,20 @@
 // ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include <cstdlib>
+#include "Colour.hpp"
 
-namespace rt {
-extern void renderImage();
+namespace rt::colour {
+
+using Colour = vec3::Vec3;
+
+/// @brief Write the value of each colour component to the given output stream
+/// @param out The output stream to write to
+/// @param pixelColour The colour of a single pixel in RGB format
+void writeColour(std::ostream &out, Colour const &pixelColour) noexcept {
+  // Write the translated [0, 255] value of each colour component
+  out << static_cast<int>(255.999 * pixelColour.x()) << ' '
+      << static_cast<int>(255.999 * pixelColour.y()) << ' '
+      << static_cast<int>(255.999 * pixelColour.z()) << '\n';
 }
 
-int main() {
-  rt::renderImage();
-
-  return EXIT_SUCCESS;
-}
+} // namespace rt::colour

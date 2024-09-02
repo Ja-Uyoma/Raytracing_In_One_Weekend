@@ -22,14 +22,22 @@
 // ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include <cstdlib>
+#ifndef COLOUR_HPP
+#define COLOUR_HPP
 
-namespace rt {
-extern void renderImage();
-}
+#include "Vec3.hpp"
 
-int main() {
-  rt::renderImage();
+#include <iostream>
 
-  return EXIT_SUCCESS;
-}
+namespace rt::colour {
+
+using Colour = vec3::Vec3;
+
+/// @brief Write the value of each colour component to the given output stream
+/// @param out The output stream to write to
+/// @param pixelColour The colour of a single pixel in RGB format
+void writeColour(std::ostream &out, Colour const &pixelColour) noexcept;
+
+} // namespace rt::colour
+
+#endif
