@@ -12,6 +12,7 @@ target_link_libraries(tests
 target_include_directories(tests
     PUBLIC
         "${includeDir}"
+        "${PROJECT_SOURCE_DIR}/src/Ray"
 )
 
 target_sources(tests
