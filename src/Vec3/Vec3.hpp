@@ -170,17 +170,17 @@ public:
   friend constexpr Vec3 operator*(Vec3 const &v, double t) noexcept {
     return t * v;
   }
-};
 
-/// @brief Get a new vector equal to the given vector scaled by the given
-/// constant
-/// @param t The scaling factor
-/// @param v The vector to be scaled
-/// @return A new vector equal to the given vector scaled by the given scaling
-/// factor
-constexpr Vec3 operator/(Vec3 const &v, double t) noexcept {
-  return (1 / t) * v;
-}
+  /// @brief Get a new vector equal to the given vector scaled by the given
+  /// constant
+  /// @param t The scaling factor
+  /// @param v The vector to be scaled
+  /// @return A new vector equal to the given vector scaled by the given scaling
+  /// factor
+  friend constexpr Vec3 operator/(Vec3 const &v, double t) noexcept {
+    return (1 / t) * v;
+  }
+};
 
 /// @brief Get the dot product of 2 given vectors
 /// @param u The first vector in the operation
