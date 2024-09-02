@@ -22,14 +22,27 @@
 // ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include <cstdlib>
+#include "Ray.hpp"
+#include "Vec3.hpp"
 
-namespace rt {
-extern void renderImage();
+#include <catch2/catch_test_macros.hpp>
+
+namespace rt::ray {
+
+TEST_CASE("at gets the point a given distance from the ray origin", "[Ray]") {
+  SECTION("All points lie on the origin regardless of distance for a "
+          "default-constructed Ray") {
+    constexpr auto ray = Ray();
+    REQUIRE((ray.at(2) == vec3::Vec3(0, 0, 0)) == true);
+  }
+
+  SECTION(
+      "Point at a given distance is dependent on ray origin and direction") {
+    constexpr auto origin = Point3(1, 2, 3);
+    constexpr auto direction = Point3(4, 5, 6);
+    constexpr auto ray = Ray(origin, direction);
+
+    REQUIRE((ray.at(2) == vec3::Vec3(9, 12, 15)) == true);
+  }
 }
-
-int main() {
-  rt::renderImage();
-
-  return EXIT_SUCCESS;
-}
+} // namespace rt::ray

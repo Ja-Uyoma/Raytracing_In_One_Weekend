@@ -1,7 +1,5 @@
 add_executable(tests)
 
-set(includeDir "${CMAKE_SOURCE_DIR}/include")
-
 find_package(Catch2 REQUIRED)
 
 target_link_libraries(tests
@@ -10,15 +8,15 @@ target_link_libraries(tests
 )
 
 target_include_directories(tests
-    PUBLIC
-        "${includeDir}"
+    PRIVATE
+        "${PROJECT_SOURCE_DIR}/src/Ray"
+        "${PROJECT_SOURCE_DIR}/src/Vec3"
 )
 
 target_sources(tests
-    PRIVATE 
+    PRIVATE
         Vec3.test.cpp
-    PUBLIC
-        "${includeDir}/Vec3.hpp"
+        Ray.test.cpp
 )
 
 target_compile_features(tests
