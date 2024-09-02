@@ -10,9 +10,6 @@ target_sources(app
     PRIVATE 
         main.cpp 
         Main.cpp
-        "${PROJECT_SOURCE_DIR}/src/Colour/Colour.hpp"
-        "${PROJECT_SOURCE_DIR}/src/Ray/Ray.hpp"
-        "${PROJECT_SOURCE_DIR}/src/Vec3/Vec3.hpp"
     PUBLIC 
 )
 
