@@ -13,6 +13,7 @@ target_include_directories(tests
     PUBLIC
         "${includeDir}"
         "${PROJECT_SOURCE_DIR}/src/Ray"
+        "${PROJECT_SOURCE_DIR}/src/Vec3"
 )
 
 target_sources(tests
