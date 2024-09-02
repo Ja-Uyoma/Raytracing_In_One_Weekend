@@ -189,7 +189,7 @@ private:
 /// @param v The second vector in the operation
 /// @return The dot product of the 2 vectors
 constexpr double getDotProduct(Vec3 const &u, Vec3 const &v) noexcept {
-  return (u.e[0] * v.e[0] + u.e[1] * v.e[1] + u.e[2] + v.e[2]);
+  return (u.x() * v.x() + u.y() * v.y() + u.z() + v.z());
 }
 
 /// @brief Get the cross product of 2 given vectors
@@ -197,9 +197,8 @@ constexpr double getDotProduct(Vec3 const &u, Vec3 const &v) noexcept {
 /// @param v The second vector in the operation
 /// @return The cross product of the 2 vectors
 constexpr Vec3 getCrossProduct(Vec3 const &u, Vec3 const &v) noexcept {
-  return Vec3(u.e[1] * v.e[2] - u.e[2] * v.e[1],
-              u.e[2] * v.e[0] - u.e[0] * v.e[2],
-              u.e[0] * v.e[1] - u.e[1] * v.e[0]);
+  return Vec3(u.y() * v.z() - u.z() * v.y(), u.z() * v.x() - u.x() * v.z(),
+              u.x() * v.y() - u.y() * v.x());
 }
 
 /// @brief Get the unit vector of the given vector
