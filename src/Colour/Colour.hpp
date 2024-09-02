@@ -29,7 +29,7 @@
 
 #include <iostream>
 
-namespace rt {
+namespace rt::colour {
 
 using Colour = Vec3;
 
@@ -38,6 +38,6 @@ using Colour = Vec3;
 /// @param pixelColour The colour of a single pixel in RGB format
 void writeColour(std::ostream &out, Colour const &pixelColour) noexcept;
 
-} // namespace rt
+} // namespace rt::colour
 
 #endif

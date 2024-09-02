@@ -43,10 +43,11 @@ void renderImage() {
               << std::flush;
 
     for (int i = 0; i < img.width; ++i) {
-      auto pixelColour = Colour(static_cast<double>(i) / (img.width - 1),
-                                static_cast<double>(j) / (img.height - 1), 0);
+      auto pixelColour =
+          colour::Colour(static_cast<double>(i) / (img.width - 1),
+                         static_cast<double>(j) / (img.height - 1), 0);
 
-      writeColour(std::cout, pixelColour);
+      colour::writeColour(std::cout, pixelColour);
     }
   }
 

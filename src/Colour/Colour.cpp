@@ -24,7 +24,7 @@
 
 #include "Colour.hpp"
 
-namespace rt {
+namespace rt::colour {
 
 using Colour = Vec3;
 
@@ -38,4 +38,4 @@ void writeColour(std::ostream &out, Colour const &pixelColour) noexcept {
       << static_cast<int>(255.999 * pixelColour.z()) << '\n';
 }
 
-} // namespace rt
+} // namespace rt::colour
