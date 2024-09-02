@@ -30,7 +30,7 @@
 #include <cmath>
 #include <iostream>
 
-namespace rt {
+namespace rt::vec3 {
 class Vec3 {
 public:
   std::array<double, 3> e{0, 0, 0};
@@ -202,6 +202,6 @@ constexpr Vec3 getCrossProduct(Vec3 const &u, Vec3 const &v) noexcept {
 /// @param v The vector whose unit vector is to be computed
 /// @return The unit vector of the given vector
 constexpr Vec3 getUnitVector(Vec3 const &v) noexcept { return v / v.length(); }
-} // namespace rt
+} // namespace rt::vec3
 
 #endif

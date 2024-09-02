@@ -31,7 +31,7 @@
 
 namespace rt::colour {
 
-using Colour = Vec3;
+using Colour = vec3::Vec3;
 
 /// @brief Write the value of each colour component to the given output stream
 /// @param out The output stream to write to

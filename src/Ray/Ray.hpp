@@ -28,7 +28,7 @@
 #include "Vec3.hpp"
 
 namespace rt::ray {
-using Point3 = Vec3;
+using Point3 = vec3::Vec3;
 
 class Ray {
 public:
@@ -38,7 +38,7 @@ public:
   /// @brief Constructor. Create a new Ray with the given origin and direction
   /// @param origin The origin of the ray
   /// @param direction The direction the ray is travelling towards
-  constexpr Ray(Point3 const &origin, Vec3 const &direction) noexcept
+  constexpr Ray(Point3 const &origin, vec3::Vec3 const &direction) noexcept
       : m_origin(origin), m_direction(direction) {}
 
   /// @brief Get the origin of this ray
@@ -47,7 +47,9 @@ public:
 
   /// @brief Get the direction this ray is travelling towards
   /// @return The direction the ray is travelling towards
-  constexpr Vec3 const &getDirection() const noexcept { return m_direction; }
+  constexpr vec3::Vec3 const &getDirection() const noexcept {
+    return m_direction;
+  }
 
   /// @brief Get the point a given distance from the ray's origin
   /// @param t The distance from the ray's origin
@@ -58,7 +60,7 @@ public:
 
 private:
   Point3 m_origin;
-  Vec3 m_direction;
+  vec3::Vec3 m_direction;
 };
 } // namespace rt::ray
 
