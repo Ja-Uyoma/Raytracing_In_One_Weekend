@@ -134,15 +134,15 @@ public:
   friend constexpr Vec3 operator+(Vec3 const &u, Vec3 const &v) noexcept {
     return Vec3(u.e[0] + v.e[0], u.e[1] + v.e[1], u.e[2] + v.e[2]);
   }
-};
 
-/// @brief Perform component-wise subtraction of 2 vectors
-/// @param u The first vector in the difference
-/// @param v The second vector in the difference
-/// @return A new vector equal to the difference of the 2 vectors
-constexpr Vec3 operator-(Vec3 const &u, Vec3 const &v) noexcept {
-  return Vec3(u.e[0] - v.e[0], u.e[1] - v.e[1], u.e[2] - v.e[2]);
-}
+  /// @brief Perform component-wise subtraction of 2 vectors
+  /// @param u The first vector in the difference
+  /// @param v The second vector in the difference
+  /// @return A new vector equal to the difference of the 2 vectors
+  friend constexpr Vec3 operator-(Vec3 const &u, Vec3 const &v) noexcept {
+    return Vec3(u.e[0] - v.e[0], u.e[1] - v.e[1], u.e[2] - v.e[2]);
+  }
+};
 
 /// @brief Perform component-wise multiplication of 2 vectors
 /// @param u The first vector in the product
