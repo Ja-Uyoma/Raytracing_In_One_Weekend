@@ -39,7 +39,7 @@ TEST_CASE("at gets the point a given distance from the ray origin", "[Ray]") {
   SECTION(
       "Point at a given distance is dependent on ray origin and direction") {
     constexpr auto origin = Point3(1, 2, 3);
-    constexpr auto direction = Point3(4, 5, 6);
+    constexpr auto direction = vec3::Vec3(4, 5, 6);
     constexpr auto ray = Ray(origin, direction);
 
     REQUIRE((ray.at(2) == vec3::Vec3(9, 12, 15)) == true);
