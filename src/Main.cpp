@@ -62,6 +62,18 @@ void renderImage() {
   static constexpr std::size_t imgHeight{
       static_cast<size_t>(imgWidth / aspectRatio)};
 
+  // Camera
+
+  static constexpr auto viewportHeight{2.0};
+  static constexpr auto viewportWidth{aspectRatio * viewportHeight};
+  static constexpr auto focalLength{1.0};
+
+  static constexpr auto origin = ray::Point3(0, 0, 0);
+  static constexpr auto horizontal = vec3::Vec3(viewportWidth, 0, 0);
+  static constexpr auto vertical = vec3::Vec3(0, viewportHeight, 0);
+  static constexpr auto lowerLeftCorner =
+      origin - horizontal / 2 - vertical / 2 - vec3::Vec3(0, 0, focalLength);
+
   std::cout << "P3\n" << imgWidth << ' ' << imgHeight << "\n255\n";
 
   for (std::size_t j = imgHeight - 1; j < imgHeight; --j) {
