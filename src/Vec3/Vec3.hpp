@@ -118,6 +118,9 @@ public:
     return (e[0] * e[0]) + (e[1] * e[1]) + (e[2] * e[2]);
   }
 
+private:
+  std::array<double, 3> e{0, 0, 0};
+
   /// @brief Write the given vector to an output stream
   /// @param out The output stream to which the vector is to be written
   /// @param v The vector to be written to the output stream
@@ -187,9 +190,6 @@ public:
   friend constexpr bool operator==(Vec3 const &a, Vec3 const &b) noexcept {
     return a.x() == b.x() and a.y() == b.y() and a.z() == b.z();
   }
-
-private:
-  std::array<double, 3> e{0, 0, 0};
 };
 
 /// @brief Get the dot product of 2 given vectors
