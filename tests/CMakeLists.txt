@@ -11,12 +11,14 @@ target_include_directories(tests
     PRIVATE
         "${PROJECT_SOURCE_DIR}/src/Ray"
         "${PROJECT_SOURCE_DIR}/src/Vec3"
+        "${PROJECT_SOURCE_DIR}/src/Colour"
 )
 
 target_sources(tests
     PRIVATE
         Vec3.test.cpp
         Ray.test.cpp
+        Colour.test.cpp
 )
 
 target_compile_features(tests
