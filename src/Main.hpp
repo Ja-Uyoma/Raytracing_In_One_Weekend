@@ -35,6 +35,9 @@ namespace rt {
 /// \returns A linear blend of white and blue colours
 colour::Colour rayColour(ray::Ray const &ray) noexcept;
 
+/// \brief Render a 256 px by 256 px PPM image
+void renderImage();
+
 } // namespace rt
 
 #endif
