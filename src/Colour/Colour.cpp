@@ -29,11 +29,10 @@ namespace rt::colour {
 /// @brief Write the value of each colour component to the given output stream
 /// @param out The output stream to write to
 /// @param pixelColour The colour of a single pixel in RGB format
+/// @details You should call mapToByteRange before calling this function
 void writeColour(std::ostream &out, Colour const &pixelColour) noexcept {
-  // Write the translated [0, 255] value of each colour component
-  out << static_cast<int>(255.999 * pixelColour.r()) << ' '
-      << static_cast<int>(255.999 * pixelColour.g()) << ' '
-      << static_cast<int>(255.999 * pixelColour.b()) << '\n';
+  out << pixelColour.r() << ' ' << pixelColour.g() << ' ' << pixelColour.b()
+      << '\n';
 }
 
 } // namespace rt::colour
