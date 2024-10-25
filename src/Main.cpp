@@ -30,10 +30,6 @@
 #include <iostream>
 
 namespace rt {
-struct Image {
-  std::size_t width;
-  std::size_t height;
-};
 
 /// \brief Produce a linear blend of white and blue colours
 /// \param[in] ray The ray whose colour is to be computed
@@ -59,17 +55,18 @@ colour::Colour rayColour(ray::Ray const &ray) noexcept {
 
 /// @brief Render a 256 px by 256 px PPM image
 void renderImage() {
-  constexpr Image img{.width = 256, .height = 256};
+  static constexpr std::size_t imgWidth{256};
+  static constexpr std::size_t imgHeight{256};
 
-  std::cout << "P3\n" << img.width << ' ' << img.height << "\n255\n";
+  std::cout << "P3\n" << imgWidth << ' ' << imgHeight << "\n255\n";
 
-  for (std::size_t j = img.height - 1; j < img.height; --j) {
+  for (std::size_t j = imgHeight - 1; j < imgHeight; --j) {
     std::clog << "\rScanlines remaining: " << j << '\n' << std::flush;
 
-    for (std::size_t i = 0; i < img.width; ++i) {
+    for (std::size_t i = 0; i < imgWidth; ++i) {
       auto pixelColour =
-          colour::Colour(static_cast<double>(i) / (img.width - 1),
-                         static_cast<double>(j) / (img.height - 1), 0);
+          colour::Colour(static_cast<double>(i) / (imgWidth - 1),
+                         static_cast<double>(j) / (imgHeight - 1), 0);
 
       auto const colour = colour::mapToByteRange(pixelColour);
       colour::writeColour(std::cout, colour);
