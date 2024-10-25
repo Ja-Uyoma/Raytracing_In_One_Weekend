@@ -20,4 +20,28 @@ TEST_CASE("getters get the corresponding colour component value", "[Colour]") {
   }
 }
 
+TEST_CASE("operator+", "[Colour]") {
+  SECTION("creates a new colour from the sum of two initial colours") {
+    constexpr auto first = Colour(100.0, 50.0, 25.0);
+    constexpr auto second = Colour(15, 80, 49);
+    constexpr auto result = first + second;
+
+    REQUIRE(result.r() == first.r() + second.r());
+    REQUIRE(result.g() == first.g() + second.g());
+    REQUIRE(result.b() == first.b() + second.b());
+  }
+}
+
+TEST_CASE("operator*", "[Colour]") {
+  SECTION("creates a new colour that is a scalar multiple of the initial one") {
+    constexpr auto initial = Colour(10, 20, 30);
+    constexpr auto scalar = 8;
+    constexpr auto result = scalar * initial;
+
+    REQUIRE(result.r() == initial.r() * scalar);
+    REQUIRE(result.g() == initial.g() * scalar);
+    REQUIRE(result.b() == initial.b() * scalar);
+  }
+}
+
 } // namespace rt::colour
