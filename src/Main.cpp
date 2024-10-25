@@ -38,11 +38,11 @@ void renderImage() {
 
   std::cout << "P3\n" << img.width << ' ' << img.height << "\n255\n";
 
-  for (int j = 0; j < img.height; ++j) {
+  for (std::size_t j = 0; j < img.height; ++j) {
     std::clog << "\rScanlines remaining: " << (img.height - j) << '\n'
               << std::flush;
 
-    for (int i = 0; i < img.width; ++i) {
+    for (std::size_t i = 0; i < img.width; ++i) {
       auto pixelColour =
           colour::Colour(static_cast<double>(i) / (img.width - 1),
                          static_cast<double>(j) / (img.height - 1), 0);
