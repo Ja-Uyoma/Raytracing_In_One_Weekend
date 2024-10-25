@@ -1,6 +1,8 @@
 #include "Colour.hpp"
 
 #include <catch2/catch_test_macros.hpp>
+#include <sstream>
+#include <string_view>
 
 namespace rt::colour {
 
@@ -41,6 +43,17 @@ TEST_CASE("operator*", "[Colour]") {
     REQUIRE(result.r() == initial.r() * scalar);
     REQUIRE(result.g() == initial.g() * scalar);
     REQUIRE(result.b() == initial.b() * scalar);
+  }
+}
+
+TEST_CASE("writeColour", "[Colour]") {
+  SECTION("it writes the translated colour values to an output stream") {
+    auto ss = std::stringstream{};
+    constexpr auto colour = Colour(0.1, 0.2, 0.3);
+
+    writeColour(ss, colour);
+
+    REQUIRE(ss.view() == std::string_view("25 51 76\n"));
   }
 }
 
