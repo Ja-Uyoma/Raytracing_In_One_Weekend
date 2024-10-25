@@ -57,6 +57,11 @@ constexpr bool rayHasHitSphere(ray::Point3 const &centre, double const radius,
 /// \param[in] ray The ray whose colour is to be computed
 /// \returns A linear blend of white and blue colours
 colour::Colour rayColour(ray::Ray const &ray) noexcept {
+  // If the ray has hit the sphere in the viewport, then colour that spot red
+  if (rayHasHitSphere(ray::Point3(0, 0, -1), 0.5, ray)) {
+    return colour::Colour(1, 0, 0);
+  }
+
   // Get the ray direction and scale it to unit length (so -1.0 < y < 1.0)
   // Because we're using the y height after normalizing the vector, there'll be
   // a horizontal gradient to the colour in addition to the vertical gradient
