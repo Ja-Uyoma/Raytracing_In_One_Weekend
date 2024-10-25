@@ -55,8 +55,12 @@ colour::Colour rayColour(ray::Ray const &ray) noexcept {
 
 /// @brief Render a 256 px by 256 px PPM image
 void renderImage() {
-  static constexpr std::size_t imgWidth{256};
-  static constexpr std::size_t imgHeight{256};
+  // Image
+
+  static constexpr auto aspectRatio{16.0 / 9.0};
+  static constexpr std::size_t imgWidth{400};
+  static constexpr std::size_t imgHeight{
+      static_cast<size_t>(imgWidth / aspectRatio)};
 
   std::cout << "P3\n" << imgWidth << ' ' << imgHeight << "\n255\n";
 
