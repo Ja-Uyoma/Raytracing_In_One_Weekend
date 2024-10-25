@@ -71,24 +71,27 @@ public:
 
 private:
   std::array<double, 3> m_data{0, 0, 0};
+
+  /// \brief Get the sum of two colours
+  /// \param[in] first The first colour
+  /// \param[in] second The second colour
+  /// \returns A new colour from the sum of the two original colours
+  friend constexpr Colour operator+(Colour const &first,
+                                    Colour const &second) noexcept {
+    return Colour(first.r() + second.r(), first.g() + second.g(),
+                  first.b() + second.b());
+  }
+
+  /// \brief Get the scalar multiple of a given colour
+  /// \param[in] scalar The scalar to be multiplied with the original colour
+  /// \param[in] colour The initial colour
+  /// \returns A new colour from the scalar multiple of the original colour
+  friend constexpr Colour operator*(double const scalar,
+                                    Colour const &colour) noexcept {
+    return Colour(scalar * colour.r(), scalar * colour.g(),
+                  scalar * colour.b());
+  }
 };
-
-/// \brief Get the sum of two colours
-/// \param[in] first The first colour
-/// \param[in] second The second colour
-/// \returns A new colour from the sum of the two original colours
-constexpr Colour operator+(Colour const &first, Colour const &second) noexcept {
-  return Colour(first.r() + second.r(), first.g() + second.g(),
-                first.b() + second.b());
-}
-
-/// \brief Get the scalar multiple of a given colour
-/// \param[in] scalar The scalar to be multiplied with the original colour
-/// \param[in] colour The initial colour
-/// \returns A new colour from the scalar multiple of the original colour
-constexpr Colour operator*(double const scalar, Colour const &colour) noexcept {
-  return Colour(scalar * colour.r(), scalar * colour.g(), scalar * colour.b());
-}
 
 /// \brief Map each individual colour component to the range [0, 255]
 /// \param[in] colour The colour to be mapped to the specified range
