@@ -22,6 +22,7 @@
 // ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
+#include "Main.hpp"
 #include "Colour/Colour.hpp"
 #include "Ray.hpp"
 #include "Vec3.hpp"
