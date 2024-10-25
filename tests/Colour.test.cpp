@@ -46,6 +46,17 @@ TEST_CASE("operator*", "[Colour]") {
   }
 }
 
+TEST_CASE("mapToByteRange", "[Colour]") {
+  SECTION("Maps each individual colour component to the range [0, 255]") {
+    constexpr auto colour = Colour(0.5, 0.7, 1.0);
+    constexpr auto result = mapToByteRange(colour);
+
+    REQUIRE((result.r() >= 0 and result.r() <= 255));
+    REQUIRE((result.g() >= 0 and result.g() <= 255));
+    REQUIRE((result.b() >= 0 and result.b() <= 255));
+  }
+}
+
 TEST_CASE("writeColour", "[Colour]") {
   SECTION("it writes the translated colour values to an output stream") {
     auto ss = std::stringstream{};
