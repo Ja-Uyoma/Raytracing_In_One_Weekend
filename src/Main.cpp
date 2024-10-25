@@ -24,12 +24,13 @@
 
 #include "Colour/Colour.hpp"
 
+#include <cstddef>
 #include <iostream>
 
 namespace rt {
 struct Image {
-  int width;
-  int height;
+  std::size_t width;
+  std::size_t height;
 };
 
 /// @brief Render a 256 px by 256 px PPM image
