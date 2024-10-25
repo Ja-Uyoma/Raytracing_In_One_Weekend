@@ -32,6 +32,27 @@
 
 namespace rt {
 
+/// \brief Determine if a ray has hit the sphere in the viewport
+/// \param[in] centre The centre of the sphere
+/// \param[in] radius The radius of the sphere
+/// \param[in] ray The ray under test
+/// \returns True if the ray has hit the sphere, and false otherwise
+constexpr bool rayHasHitSphere(ray::Point3 const &centre, double const radius,
+                               ray::Ray const &ray) noexcept {
+  // Get the vector from the ray origin to the sphere centre
+  auto const oc = ray.getOrigin() - centre;
+
+  // Recall the quadratic formula, x = (-b ± sqrt(b^2 - 4ac) / 2a)
+  // We now proceed to calculate our a, b, and c values
+
+  auto const a = vec3::getDotProduct(ray.getDirection(), ray.getDirection());
+  auto const b = 2.0 * vec3::getDotProduct(oc, ray.getDirection());
+  auto const c = vec3::getDotProduct(oc, oc) - (radius * radius);
+
+  auto const discriminant = (b * b) - (4 * a * c);
+  return discriminant > 0;
+}
+
 /// \brief Produce a linear blend of white and blue colours
 /// \param[in] ray The ray whose colour is to be computed
 /// \returns A linear blend of white and blue colours
@@ -52,27 +73,6 @@ colour::Colour rayColour(ray::Ray const &ray) noexcept {
   static constexpr auto end = colour::Colour(0.5, 0.7, 1.0);
 
   return (1.0 - t) * start + t * end;
-}
-
-/// \brief Determine if a ray has hit the sphere in the viewport
-/// \param[in] centre The centre of the sphere
-/// \param[in] radius The radius of the sphere
-/// \param[in] ray The ray under test
-/// \returns True if the ray has hit the sphere, and false otherwise
-constexpr bool rayHasHitSphere(ray::Point3 const &centre, double const radius,
-                               ray::Ray const &ray) noexcept {
-  // Get the vector from the ray origin to the sphere centre
-  auto const oc = ray.getOrigin() - centre;
-
-  // Recall the quadratic formula, x = (-b ± sqrt(b^2 - 4ac) / 2a)
-  // We now proceed to calculate our a, b, and c values
-
-  auto const a = vec3::getDotProduct(ray.getDirection(), ray.getDirection());
-  auto const b = 2.0 * vec3::getDotProduct(oc, ray.getDirection());
-  auto const c = vec3::getDotProduct(oc, oc) - (radius * radius);
-
-  auto const discriminant = (b * b) - (4 * a * c);
-  return discriminant > 0;
 }
 
 /// @brief Render a 256 px by 256 px PPM image
