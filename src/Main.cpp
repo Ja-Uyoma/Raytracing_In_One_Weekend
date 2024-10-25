@@ -74,16 +74,20 @@ void renderImage() {
   static constexpr auto lowerLeftCorner =
       origin - horizontal / 2 - vertical / 2 - vec3::Vec3(0, 0, focalLength);
 
+  // Render
+
   std::cout << "P3\n" << imgWidth << ' ' << imgHeight << "\n255\n";
 
   for (std::size_t j = imgHeight - 1; j < imgHeight; --j) {
     std::clog << "\rScanlines remaining: " << j << '\n' << std::flush;
 
     for (std::size_t i = 0; i < imgWidth; ++i) {
-      auto pixelColour =
-          colour::Colour(static_cast<double>(i) / (imgWidth - 1),
-                         static_cast<double>(j) / (imgHeight - 1), 0);
+      auto const u = static_cast<double>(i) / (imgWidth - 1);
+      auto const v = static_cast<double>(j) / (imgHeight - 1);
+      auto const ray = ray::Ray(origin, lowerLeftCorner + u * horizontal +
+                                            v * vertical - origin);
 
+      auto pixelColour = rayColour(ray);
       auto const colour = colour::mapToByteRange(pixelColour);
       colour::writeColour(std::cout, colour);
     }
