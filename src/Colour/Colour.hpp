@@ -90,6 +90,15 @@ constexpr Colour operator*(double const scalar, Colour const &colour) noexcept {
   return Colour(scalar * colour.r(), scalar * colour.g(), scalar * colour.b());
 }
 
+/// \brief Map each individual colour component to the range [0, 255]
+/// \param[in] colour The colour to be mapped to the specified range
+/// \returns A new colour whose colour components lie within the [0, 255] range
+constexpr Colour mapToByteRange(Colour const &colour) noexcept {
+  return Colour(static_cast<int>(255.999 * colour.r()),
+                static_cast<int>(255.999 * colour.g()),
+                static_cast<int>(255.999 * colour.b()));
+}
+
 /// @brief Write the value of each colour component to the given output stream
 /// @param out The output stream to write to
 /// @param pixelColour The colour of a single pixel in RGB format
