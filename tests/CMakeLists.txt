@@ -19,6 +19,7 @@ target_sources(tests
         Vec3.test.cpp
         Ray.test.cpp
         Colour.test.cpp
+        "${PROJECT_SOURCE_DIR}/src/Colour/Colour.cpp"
 )
 
 target_compile_features(tests
