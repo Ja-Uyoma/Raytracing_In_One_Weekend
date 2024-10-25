@@ -64,7 +64,7 @@ TEST_CASE("writeColour", "[Colour]") {
 
     writeColour(ss, colour);
 
-    REQUIRE(ss.view() == std::string_view("25 51 76\n"));
+    REQUIRE(ss.view() == std::string_view("0.1 0.2 0.3\n"));
   }
 }
 
