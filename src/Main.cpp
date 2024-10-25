@@ -23,6 +23,8 @@
 // DEALINGS IN THE SOFTWARE.
 
 #include "Colour/Colour.hpp"
+#include "Ray.hpp"
+#include "Vec3.hpp"
 
 #include <cstddef>
 #include <iostream>
@@ -32,6 +34,28 @@ struct Image {
   std::size_t width;
   std::size_t height;
 };
+
+/// \brief Produce a linear blend of white and blue colours
+/// \param[in] ray The ray whose colour is to be computed
+/// \returns A linear blend of white and blue colours
+colour::Colour rayColour(ray::Ray const &ray) noexcept {
+  // Get the ray direction and scale it to unit length (so -1.0 < y < 1.0)
+  // Because we're using the y height after normalizing the vector, there'll be
+  // a horizontal gradient to the colour in addition to the vertical gradient
+  auto const unitDirection = vec3::getUnitVector(ray.getDirection());
+
+  // Take the y height and scale it to the range 0.0 <= t <= 1.0
+  auto const t = 0.5 * (unitDirection.y() + 1.0);
+
+  // When t = 1.0, we'll have the colour blue
+  // When t = 0.0, we'll have the colour white
+  // In between, we'll have a blend of colours
+  // This produces a linear interpolation of the start and end colours
+  constexpr auto start = colour::Colour(1.0, 1.0, 1.0);
+  constexpr auto end = colour::Colour(0.5, 0.7, 1.0);
+
+  return (1.0 - t) * start + t * end;
+}
 
 /// @brief Render a 256 px by 256 px PPM image
 void renderImage() {
