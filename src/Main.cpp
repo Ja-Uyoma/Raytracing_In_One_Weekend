@@ -39,9 +39,8 @@ void renderImage() {
 
   std::cout << "P3\n" << img.width << ' ' << img.height << "\n255\n";
 
-  for (std::size_t j = 0; j < img.height; ++j) {
-    std::clog << "\rScanlines remaining: " << (img.height - j) << '\n'
-              << std::flush;
+  for (std::size_t j = img.height - 1; j < img.height; --j) {
+    std::clog << "\rScanlines remaining: " << j << '\n' << std::flush;
 
     for (std::size_t i = 0; i < img.width; ++i) {
       auto pixelColour =
