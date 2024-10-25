@@ -47,7 +47,8 @@ void renderImage() {
           colour::Colour(static_cast<double>(i) / (img.width - 1),
                          static_cast<double>(j) / (img.height - 1), 0);
 
-      colour::writeColour(std::cout, pixelColour);
+      auto const colour = colour::mapToByteRange(pixelColour);
+      colour::writeColour(std::cout, colour);
     }
   }
 
