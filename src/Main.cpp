@@ -47,8 +47,8 @@ colour::Colour rayColour(ray::Ray const &ray) noexcept {
   // When t = 0.0, we'll have the colour white
   // In between, we'll have a blend of colours
   // This produces a linear interpolation of the start and end colours
-  constexpr auto start = colour::Colour(1.0, 1.0, 1.0);
-  constexpr auto end = colour::Colour(0.5, 0.7, 1.0);
+  static constexpr auto start = colour::Colour(1.0, 1.0, 1.0);
+  static constexpr auto end = colour::Colour(0.5, 0.7, 1.0);
 
   return (1.0 - t) * start + t * end;
 }
