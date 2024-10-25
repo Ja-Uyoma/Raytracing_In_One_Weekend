@@ -82,7 +82,7 @@ public:
   /// @brief Perform component-wise sum of the given vector and this vector
   /// @param v The vector to be added to this one
   /// @return This vector after the addition has been performed
-  Vec3 &operator+=(Vec3 const &v) noexcept {
+  constexpr Vec3 &operator+=(Vec3 const &v) noexcept {
     e[0] += v.e[0];
     e[1] += v.e[1];
     e[2] += v.e[2];
@@ -93,7 +93,7 @@ public:
   /// @brief Multiply this vector by the given constant
   /// @param t The scalar constant to be multiplied with the vector
   /// @return This vector after it has been scaled by the given constant
-  Vec3 &operator*=(double t) noexcept {
+  constexpr Vec3 &operator*=(double t) noexcept {
     for (auto &elem : e) {
       elem *= t;
     }
@@ -104,7 +104,7 @@ public:
   /// @brief Divide this vector by the given constant
   /// @param t The scalar constant to divide the vector with
   /// @return This vector after it has been down-scaled by the given constant
-  Vec3 &operator/=(double t) noexcept { return *this *= (1 / t); }
+  constexpr Vec3 &operator/=(double t) noexcept { return *this *= (1 / t); }
 
   /// @brief Get the length of this vector
   /// @return The length of the vector
