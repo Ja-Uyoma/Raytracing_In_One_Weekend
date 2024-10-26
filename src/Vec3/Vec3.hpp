@@ -82,7 +82,7 @@ public:
   /// @brief Perform component-wise sum of the given vector and this vector
   /// @param v The vector to be added to this one
   /// @return This vector after the addition has been performed
-  Vec3 &operator+=(Vec3 const &v) noexcept {
+  constexpr Vec3 &operator+=(Vec3 const &v) noexcept {
     e[0] += v.e[0];
     e[1] += v.e[1];
     e[2] += v.e[2];
@@ -93,7 +93,7 @@ public:
   /// @brief Multiply this vector by the given constant
   /// @param t The scalar constant to be multiplied with the vector
   /// @return This vector after it has been scaled by the given constant
-  Vec3 &operator*=(double t) noexcept {
+  constexpr Vec3 &operator*=(double t) noexcept {
     for (auto &elem : e) {
       elem *= t;
     }
@@ -104,7 +104,7 @@ public:
   /// @brief Divide this vector by the given constant
   /// @param t The scalar constant to divide the vector with
   /// @return This vector after it has been down-scaled by the given constant
-  Vec3 &operator/=(double t) noexcept { return *this *= (1 / t); }
+  constexpr Vec3 &operator/=(double t) noexcept { return *this *= (1 / t); }
 
   /// @brief Get the length of this vector
   /// @return The length of the vector
@@ -117,6 +117,9 @@ public:
   constexpr double lengthSquared() const noexcept {
     return (e[0] * e[0]) + (e[1] * e[1]) + (e[2] * e[2]);
   }
+
+private:
+  std::array<double, 3> e{0, 0, 0};
 
   /// @brief Write the given vector to an output stream
   /// @param out The output stream to which the vector is to be written
@@ -187,9 +190,6 @@ public:
   friend constexpr bool operator==(Vec3 const &a, Vec3 const &b) noexcept {
     return a.x() == b.x() and a.y() == b.y() and a.z() == b.z();
   }
-
-private:
-  std::array<double, 3> e{0, 0, 0};
 };
 
 /// @brief Get the dot product of 2 given vectors

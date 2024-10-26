@@ -22,35 +22,18 @@
 // ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include "Colour/Colour.hpp"
-
-#include <iostream>
+#include "Main.hpp"
+#include "Ray.hpp"
+#include <catch2/catch_test_macros.hpp>
 
 namespace rt {
-struct Image {
-  int width;
-  int height;
-};
 
-/// @brief Render a 256 px by 256 px PPM image
-void renderImage() {
-  constexpr Image img{.width = 256, .height = 256};
+TEST_CASE("rayHasHitSphere") {
+  static constexpr auto sphereCentre = ray::Point3(0, 0, 1);
+  static constexpr double radius = 0.5;
+  static constexpr auto ray = ray::Ray();
 
-  std::cout << "P3\n" << img.width << ' ' << img.height << "\n255\n";
-
-  for (int j = 0; j < img.height; ++j) {
-    std::clog << "\rScanlines remaining: " << (img.height - j) << '\n'
-              << std::flush;
-
-    for (int i = 0; i < img.width; ++i) {
-      auto pixelColour =
-          colour::Colour(static_cast<double>(i) / (img.width - 1),
-                         static_cast<double>(j) / (img.height - 1), 0);
-
-      colour::writeColour(std::cout, pixelColour);
-    }
-  }
-
-  std::clog << "\rDone.            \n";
+  REQUIRE(rayHasHitSphere(sphereCentre, radius, ray) == true);
 }
+
 } // namespace rt

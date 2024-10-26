@@ -4,12 +4,14 @@ target_include_directories(app
     PRIVATE 
         "${PROJECT_SOURCE_DIR}/src/Ray"
         "${PROJECT_SOURCE_DIR}/src/Vec3"
+        "${PROJECT_SOURCE_DIR}/src/Colour"
+        "${PROJECT_SOURCE_DIR}/src/Main"
 )
 
 target_sources(app
     PRIVATE
         main.cpp 
-        Main.cpp
+        "${PROJECT_SOURCE_DIR}/src/Main/Main.cpp"
         "${PROJECT_SOURCE_DIR}/src/Colour/Colour.cpp"
 )
 
