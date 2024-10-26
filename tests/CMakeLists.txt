@@ -12,6 +12,7 @@ target_include_directories(tests
         "${PROJECT_SOURCE_DIR}/src/Ray"
         "${PROJECT_SOURCE_DIR}/src/Vec3"
         "${PROJECT_SOURCE_DIR}/src/Colour"
+        "${PROJECT_SOURCE_DIR}/src/Main"
 )
 
 target_sources(tests
@@ -20,6 +21,8 @@ target_sources(tests
         Ray.test.cpp
         Colour.test.cpp
         "${PROJECT_SOURCE_DIR}/src/Colour/Colour.cpp"
+        Main.test.cpp
+        "${PROJECT_SOURCE_DIR}/src/Main/Main.cpp"
 )
 
 target_compile_features(tests
