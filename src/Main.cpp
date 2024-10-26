@@ -42,8 +42,21 @@ constexpr bool rayHasHitSphere(ray::Point3 const &centre, double const radius,
   // Get the vector from the ray origin to the sphere centre
   auto const oc = ray.getOrigin() - centre;
 
-  // Recall the quadratic formula, x = (-b ± sqrt(b^2 - 4ac) / 2a)
-  // We now proceed to calculate our a, b, and c values
+  // The equation of a ray is P(t) = A + tb, where P is a 3D position along a
+  // line, A is the ray origin, b is the ray direction, and t is a scalar
+  // value.
+  // We want to know if our ray ever hits the sphere anywhere. If it
+  // does, there is some t for which P(t) satisfies the sphere equation:
+  // (P - C) * (P - C) = r^2
+  // So we are looking for any t where (P(t)) - C * (P(t) - C) = r^2, or
+  // (A + tb - C) * (A + tb - C) = r^2
+  // If we expand this equation and move all the terms to the left-hand side,
+  // we get the following equation:
+  // (t^2b * b) + 2tb * (A - C) + (A - C) * (A - C) - r^2 = 0
+  // The vectors and r in this equation are all constant and known. The unknown
+  // is t, thus making this quadratic
+  // Recall the quadratic formula, x = (-b ± sqrt(b^2 - 4ac) / 2a).
+  // We now proceed to calculate our a, b, and c values.
 
   auto const a = vec3::getDotProduct(ray.getDirection(), ray.getDirection());
   auto const b = 2.0 * vec3::getDotProduct(oc, ray.getDirection());
