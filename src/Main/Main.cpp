@@ -23,7 +23,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 #include "Main.hpp"
-#include "Colour/Colour.hpp"
+#include "Colour.hpp"
 #include "Ray.hpp"
 #include "Vec3.hpp"
 

@@ -25,8 +25,8 @@
 #ifndef MAIN_HPP
 #define MAIN_HPP
 
-#include "Colour/Colour.hpp"
-#include "Ray/Ray.hpp"
+#include "Colour.hpp"
+#include "Ray.hpp"
 
 namespace rt {
 
