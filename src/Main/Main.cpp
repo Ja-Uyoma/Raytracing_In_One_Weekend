@@ -127,7 +127,7 @@ void renderImage() {
       auto const ray = ray::Ray(origin, lowerLeftCorner + u * horizontal +
                                             v * vertical - origin);
 
-      auto pixelColour = rayColour(ray);
+      auto const pixelColour = rayColour(ray);
       auto const colour = colour::mapToByteRange(pixelColour);
       colour::writeColour(std::cout, colour);
     }
