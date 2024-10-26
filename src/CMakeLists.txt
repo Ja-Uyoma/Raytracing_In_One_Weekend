@@ -11,7 +11,7 @@ target_include_directories(app
 target_sources(app
     PRIVATE
         main.cpp 
-        Main.cpp
+        "${PROJECT_SOURCE_DIR}/src/Main/Main.cpp"
         "${PROJECT_SOURCE_DIR}/src/Colour/Colour.cpp"
 )
 
