@@ -91,6 +91,16 @@ private:
     return Colour(scalar * colour.r(), scalar * colour.g(),
                   scalar * colour.b());
   }
+
+  /// \brief Determine whether two colours are equal or not
+  /// \param[in] first The first colour
+  /// \param[in] second The second colour
+  /// \returns True if the colours are the same, and false otherwise
+  friend constexpr bool operator==(Colour const &first,
+                                   Colour const &second) noexcept {
+    return (first.r() == second.r()) and (first.g() == second.g()) and
+           (first.b() == second.b());
+  }
 };
 
 /// \brief Map each individual colour component to the range [0, 255]
