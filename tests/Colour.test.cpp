@@ -28,9 +28,7 @@ TEST_CASE("operator+", "[Colour]") {
     constexpr auto second = Colour(15, 80, 49);
     constexpr auto result = first + second;
 
-    REQUIRE(result.r() == first.r() + second.r());
-    REQUIRE(result.g() == first.g() + second.g());
-    REQUIRE(result.b() == first.b() + second.b());
+    REQUIRE(result == first + second);
   }
 }
 
@@ -40,9 +38,7 @@ TEST_CASE("operator*", "[Colour]") {
     constexpr auto scalar = 8;
     constexpr auto result = scalar * initial;
 
-    REQUIRE(result.r() == initial.r() * scalar);
-    REQUIRE(result.g() == initial.g() * scalar);
-    REQUIRE(result.b() == initial.b() * scalar);
+    REQUIRE(result == scalar * initial);
   }
 }
 
