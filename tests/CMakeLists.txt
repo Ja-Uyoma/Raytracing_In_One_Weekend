@@ -3,7 +3,7 @@ add_executable(tests)
 find_package(Catch2 REQUIRED)
 
 target_link_libraries(tests
-    PUBLIC
+    PRIVATE
         Catch2::Catch2WithMain
 )
 
