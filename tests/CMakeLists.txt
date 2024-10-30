@@ -7,6 +7,8 @@ target_link_libraries(tests
         Catch2::Catch2WithMain
 )
 
+include(Catch)
+
 target_include_directories(tests
     PRIVATE
         "${PROJECT_SOURCE_DIR}/src/Ray"
@@ -35,4 +37,4 @@ target_compile_options(tests
         -Wall -Wextra -Werror -pedantic
 )
 
-add_test(NAME tests COMMAND tests)
+catch_discover_tests(tests)
