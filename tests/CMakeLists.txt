@@ -34,3 +34,5 @@ target_compile_options(tests
     PRIVATE
         -Wall -Wextra -Werror -pedantic
 )
+
+add_test(NAME tests COMMAND tests)

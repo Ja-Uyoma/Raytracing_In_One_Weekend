@@ -22,4 +22,16 @@ project(RaytracingInOneWeekend
 include(cmake/EnforceOutOfSourceBuilds.cmake)
 
 add_subdirectory(src)
-add_subdirectory(tests)
+
+# We don't want to consider testing if we're not top-level
+if(NOT PROJECT_IS_TOP_LEVEL)
+    return()
+endif()
+
+# Include the CTest module
+include(CTest)
+
+if (BUILD_TESTING)
+    message("Building tests...")
+    add_subdirectory(tests)
+endif()
