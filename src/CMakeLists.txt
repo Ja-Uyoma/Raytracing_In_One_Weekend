@@ -22,5 +22,6 @@ target_compile_features(app
 
 target_compile_options(app
     PRIVATE 
-        -Wall -Wextra -Werror -pedantic
+        $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wall -Wextra -Werror -Wpedantic>
+        $<$<CXX_COMPILER_ID:MSVC>:/Wall>
 )

@@ -34,7 +34,8 @@ target_compile_features(tests
 
 target_compile_options(tests
     PRIVATE
-        -Wall -Wextra -Werror -pedantic
+        $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wall -Wextra -Werror -Wpedantic>
+        $<$<CXX_COMPILER_ID:MSVC>:/Wall>
 )
 
 catch_discover_tests(tests)
