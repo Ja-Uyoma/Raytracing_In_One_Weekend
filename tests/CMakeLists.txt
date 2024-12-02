@@ -19,11 +19,11 @@ target_include_directories(tests
 
 target_sources(tests
     PRIVATE
-        Vec3.test.cpp
-        Ray.test.cpp
-        Colour.test.cpp
+        Vec3/Vec3.test.cpp
+        Ray/Ray.test.cpp
+        Colour/Colour.test.cpp
         "${PROJECT_SOURCE_DIR}/src/Colour/Colour.cpp"
-        Main.test.cpp
+        Main/Main.test.cpp
         "${PROJECT_SOURCE_DIR}/src/Main/Main.cpp"
 )
 
