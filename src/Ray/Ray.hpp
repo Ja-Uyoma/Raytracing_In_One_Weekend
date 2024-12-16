@@ -33,12 +33,13 @@ using Point3 = vec3::Vec3;
 class Ray {
 public:
   /// @brief Default constructor
-  constexpr Ray() noexcept = default;
+  constexpr explicit Ray() noexcept = default;
 
   /// @brief Constructor. Create a new Ray with the given origin and direction
   /// @param origin The origin of the ray
   /// @param direction The direction the ray is travelling towards
-  constexpr Ray(Point3 const &origin, vec3::Vec3 const &direction) noexcept
+  constexpr explicit Ray(Point3 const &origin,
+                         vec3::Vec3 const &direction) noexcept
       : m_origin(origin), m_direction(direction) {}
 
   /// @brief Get the origin of this ray
