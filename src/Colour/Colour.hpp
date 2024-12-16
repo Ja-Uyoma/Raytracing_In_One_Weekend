@@ -121,8 +121,8 @@ constexpr Colour mapToByteRange(Colour const& colour) noexcept
 }
 
 /// @brief Write the value of each colour component to the given output stream
-/// @param out The output stream to write to
-/// @param pixelColour The colour of a single pixel in RGB format
+/// @param[inout] out The output stream to write to
+/// @param[in] pixelColour The colour of a single pixel in RGB format
 void writeColour(std::ostream& out, Colour const& pixelColour) noexcept;
 
 }   // namespace rt::colour

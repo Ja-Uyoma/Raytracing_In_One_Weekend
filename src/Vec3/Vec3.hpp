@@ -38,9 +38,9 @@ public:
   explicit constexpr Vec3() noexcept = default;
 
   /// @brief Constructor
-  /// @param e0 The x-coordinate of the 3d vector
-  /// @param e1 The y-coordinate of the 3d vector
-  /// @param e2 The z-coordinate of the 3d vector
+  /// @param[in] e0 The x-coordinate of the 3d vector
+  /// @param[in] e1 The y-coordinate of the 3d vector
+  /// @param[in] e2 The z-coordinate of the 3d vector
   explicit constexpr Vec3(double e0, double e1, double e2) noexcept : e {e0, e1, e2}
   {
   }
@@ -74,7 +74,7 @@ public:
   }
 
   /// @brief Access the element at the given index
-  /// @param i The index of the element in the vector
+  /// @param[in] i The index of the element in the vector
   /// @pre The index must be within the valid range
   /// @return The element at the given index
   constexpr double operator[](int i) const noexcept
@@ -84,7 +84,7 @@ public:
   }
 
   /// @brief Access the element at the given index
-  /// @param i The index of the element in the vector
+  /// @param[in] i The index of the element in the vector
   /// @pre The index must be within the valid range
   /// @return The element at the given index
   double& operator[](int i) noexcept
@@ -94,7 +94,7 @@ public:
   }
 
   /// @brief Perform component-wise sum of the given vector and this vector
-  /// @param v The vector to be added to this one
+  /// @param[in] v The vector to be added to this one
   /// @return This vector after the addition has been performed
   constexpr Vec3& operator+=(Vec3 const& v) noexcept
   {
@@ -106,7 +106,7 @@ public:
   }
 
   /// @brief Multiply this vector by the given constant
-  /// @param t The scalar constant to be multiplied with the vector
+  /// @param[in] t The scalar constant to be multiplied with the vector
   /// @return This vector after it has been scaled by the given constant
   constexpr Vec3& operator*=(double t) noexcept
   {
@@ -118,7 +118,7 @@ public:
   }
 
   /// @brief Divide this vector by the given constant
-  /// @param t The scalar constant to divide the vector with
+  /// @param[in] t The scalar constant to divide the vector with
   /// @return This vector after it has been down-scaled by the given constant
   constexpr Vec3& operator/=(double t) noexcept
   {
@@ -143,8 +143,8 @@ private:
   std::array<double, 3> e {0, 0, 0};
 
   /// @brief Write the given vector to an output stream
-  /// @param out The output stream to which the vector is to be written
-  /// @param v The vector to be written to the output stream
+  /// @param[inout] out The output stream to which the vector is to be written
+  /// @param[in] v The vector to be written to the output stream
   /// @return The output stream containing a string representation of the vector
   friend std::ostream& operator<<(std::ostream& out, Vec3 const& v) noexcept
   {
@@ -152,8 +152,8 @@ private:
   }
 
   /// @brief Perform component-wise addition of 2 vectors
-  /// @param u The first vector in the sum
-  /// @param v The second vector in the sum
+  /// @param[in] u The first vector in the sum
+  /// @param[in] v The second vector in the sum
   /// @return A new vector equal to the sum of the 2 vectors
   friend constexpr Vec3 operator+(Vec3 const& u, Vec3 const& v) noexcept
   {
@@ -161,8 +161,8 @@ private:
   }
 
   /// @brief Perform component-wise subtraction of 2 vectors
-  /// @param u The first vector in the difference
-  /// @param v The second vector in the difference
+  /// @param[in] u The first vector in the difference
+  /// @param[in] v The second vector in the difference
   /// @return A new vector equal to the difference of the 2 vectors
   friend constexpr Vec3 operator-(Vec3 const& u, Vec3 const& v) noexcept
   {
@@ -170,8 +170,8 @@ private:
   }
 
   /// @brief Perform component-wise multiplication of 2 vectors
-  /// @param u The first vector in the product
-  /// @param v The second vector in the product
+  /// @param[in] u The first vector in the product
+  /// @param[in] v The second vector in the product
   /// @return A new vector equal to the product of the 2 vectors
   friend constexpr Vec3 operator*(Vec3 const& u, Vec3 const& v) noexcept
   {
@@ -180,8 +180,8 @@ private:
 
   /// @brief Get a new vector equal to the given vector scaled by the given
   /// constant
-  /// @param t The scaling factor
-  /// @param v The vector to be scaled
+  /// @param[in] t The scaling factor
+  /// @param[in] v The vector to be scaled
   /// @return A new vector equal to the given vector scaled by the given scaling
   /// factor
   friend constexpr Vec3 operator*(double t, Vec3 const& v) noexcept
@@ -191,8 +191,8 @@ private:
 
   /// @brief Get a new vector equal to the given vector scaled by the given
   /// constant
-  /// @param t The scaling factor
-  /// @param v The vector to be scaled
+  /// @param[in] t The scaling factor
+  /// @param[in] v The vector to be scaled
   /// @return A new vector equal to the given vector scaled by the given scaling
   /// factor
   friend constexpr Vec3 operator*(Vec3 const& v, double t) noexcept
@@ -202,8 +202,8 @@ private:
 
   /// @brief Get a new vector equal to the given vector scaled by the given
   /// constant
-  /// @param t The scaling factor
-  /// @param v The vector to be scaled
+  /// @param[in] t The scaling factor
+  /// @param[in] v The vector to be scaled
   /// @return A new vector equal to the given vector scaled by the given scaling
   /// factor
   friend constexpr Vec3 operator/(Vec3 const& v, double t) noexcept
@@ -222,8 +222,8 @@ private:
 };
 
 /// @brief Get the dot product of 2 given vectors
-/// @param u The first vector in the operation
-/// @param v The second vector in the operation
+/// @param[in] u The first vector in the operation
+/// @param[in] v The second vector in the operation
 /// @return The dot product of the 2 vectors
 constexpr double getDotProduct(Vec3 const& u, Vec3 const& v) noexcept
 {
@@ -231,8 +231,8 @@ constexpr double getDotProduct(Vec3 const& u, Vec3 const& v) noexcept
 }
 
 /// @brief Get the cross product of 2 given vectors
-/// @param u The first vector in the operation
-/// @param v The second vector in the operation
+/// @param[in] u The first vector in the operation
+/// @param[in] v The second vector in the operation
 /// @return The cross product of the 2 vectors
 constexpr Vec3 getCrossProduct(Vec3 const& u, Vec3 const& v) noexcept
 {
@@ -240,7 +240,7 @@ constexpr Vec3 getCrossProduct(Vec3 const& u, Vec3 const& v) noexcept
 }
 
 /// @brief Get the unit vector of the given vector
-/// @param v The vector whose unit vector is to be computed
+/// @param[in] v The vector whose unit vector is to be computed
 /// @return The unit vector of the given vector
 constexpr Vec3 getUnitVector(Vec3 const& v) noexcept
 {
