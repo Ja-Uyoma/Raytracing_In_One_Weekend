@@ -23,12 +23,14 @@
 // DEALINGS IN THE SOFTWARE.
 
 #include "Main.hpp"
+
 #include "Ray.hpp"
 #include <catch2/catch_test_macros.hpp>
 
 namespace rt {
 
-TEST_CASE("rayHasHitSphere") {
+TEST_CASE("rayHasHitSphere")
+{
   static constexpr auto sphereCentre = ray::Point3(0, 0, 1);
   static constexpr double radius = 0.5;
   static constexpr auto ray = ray::Ray();
@@ -36,4 +38,4 @@ TEST_CASE("rayHasHitSphere") {
   REQUIRE(rayHasHitSphere(sphereCentre, radius, ray) == true);
 }
 
-} // namespace rt
+}   // namespace rt

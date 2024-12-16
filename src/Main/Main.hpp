@@ -35,8 +35,8 @@ namespace rt {
 /// \param[in] radius The radius of the sphere
 /// \param[in] ray The ray under test
 /// \returns True if the ray has hit the sphere, and false otherwise
-constexpr bool rayHasHitSphere(ray::Point3 const &centre, double const radius,
-                               ray::Ray const &ray) noexcept {
+constexpr bool rayHasHitSphere(ray::Point3 const& centre, double const radius, ray::Ray const& ray) noexcept
+{
   // Get the vector from the ray origin to the sphere centre
   auto const oc = ray.getOrigin() - centre;
 
@@ -67,11 +67,11 @@ constexpr bool rayHasHitSphere(ray::Point3 const &centre, double const radius,
 /// \brief Produce a linear blend of white and blue colours
 /// \param[in] ray The ray whose colour is to be computed
 /// \returns A linear blend of white and blue colours
-colour::Colour rayColour(ray::Ray const &ray) noexcept;
+colour::Colour rayColour(ray::Ray const& ray) noexcept;
 
 /// \brief Render a 256 px by 256 px PPM image
 void renderImage();
 
-} // namespace rt
+}   // namespace rt
 
 #endif
