@@ -84,8 +84,8 @@ void renderImage()
 
   std::cout << "P3\n" << imgWidth << ' ' << imgHeight << "\n255\n";
 
-  for (std::size_t j = imgHeight - 1; j < imgHeight; --j) {
-    std::clog << "\rScanlines remaining: " << j << '\n' << std::flush;
+  for (std::size_t j = 0; j < imgHeight; ++j) {
+    std::clog << "\rScanlines remaining: " << (imgHeight - j) << '\n' << std::flush;
 
     for (std::size_t i = 0; i < imgWidth; ++i) {
       auto const u = static_cast<double>(i) / (imgWidth - 1);
