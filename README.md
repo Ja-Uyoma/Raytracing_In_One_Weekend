@@ -1,4 +1,4 @@
-# Raytracing_In_One_Weekend
+# Raytracing In One Weekend
 
 A simple raytracer, adapted from the Raytracing In One Weekend series.
 
