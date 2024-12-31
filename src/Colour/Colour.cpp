@@ -27,12 +27,12 @@
 namespace rt::colour {
 
 /// @brief Write the value of each colour component to the given output stream
-/// @param out The output stream to write to
-/// @param pixelColour The colour of a single pixel in RGB format
+/// @param[inout] out The output stream to write to
+/// @param[in] pixelColour The colour of a single pixel in RGB format
 /// @details You should call mapToByteRange before calling this function
-void writeColour(std::ostream &out, Colour const &pixelColour) noexcept {
-  out << pixelColour.r() << ' ' << pixelColour.g() << ' ' << pixelColour.b()
-      << '\n';
+void writeColour(std::ostream& out, Colour const& pixelColour) noexcept
+{
+  out << pixelColour.r() << ' ' << pixelColour.g() << ' ' << pixelColour.b() << '\n';
 }
 
-} // namespace rt::colour
+}   // namespace rt::colour

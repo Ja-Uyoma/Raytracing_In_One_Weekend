@@ -22,18 +22,29 @@
 // ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include "Main.hpp"
 #include "Ray.hpp"
+
+#include "Vec3.hpp"
 #include <catch2/catch_test_macros.hpp>
 
-namespace rt {
+namespace rt::ray {
 
-TEST_CASE("rayHasHitSphere") {
-  static constexpr auto sphereCentre = ray::Point3(0, 0, 1);
-  static constexpr double radius = 0.5;
-  static constexpr auto ray = ray::Ray();
+TEST_CASE("at gets the point a given distance from the ray origin", "[Ray]")
+{
+  SECTION("All points lie on the origin regardless of distance for a "
+          "default-constructed Ray")
+  {
+    constexpr auto ray = Ray();
+    REQUIRE((ray.at(2) == vec3::Vec3(0, 0, 0)) == true);
+  }
 
-  REQUIRE(rayHasHitSphere(sphereCentre, radius, ray) == true);
+  SECTION("Point at a given distance is dependent on ray origin and direction")
+  {
+    constexpr auto origin = Point3(1, 2, 3);
+    constexpr auto direction = vec3::Vec3(4, 5, 6);
+    constexpr auto ray = Ray(origin, direction);
+
+    REQUIRE((ray.at(2) == vec3::Vec3(9, 12, 15)) == true);
+  }
 }
-
-} // namespace rt
+}   // namespace rt::ray

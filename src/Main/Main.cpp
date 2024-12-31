@@ -23,10 +23,10 @@
 // DEALINGS IN THE SOFTWARE.
 
 #include "Main.hpp"
+
 #include "Colour.hpp"
 #include "Ray.hpp"
 #include "Vec3.hpp"
-
 #include <cstddef>
 #include <iostream>
 
@@ -35,7 +35,8 @@ namespace rt {
 /// \brief Produce a linear blend of white and blue colours
 /// \param[in] ray The ray whose colour is to be computed
 /// \returns A linear blend of white and blue colours
-colour::Colour rayColour(ray::Ray const &ray) noexcept {
+colour::Colour rayColour(ray::Ray const& ray) noexcept
+{
   // If the ray has hit the sphere in the viewport, then colour that spot red
   if (rayHasHitSphere(ray::Point3(0, 0, -1), 0.5, ray)) {
     return colour::Colour(1, 0, 0);
@@ -60,25 +61,24 @@ colour::Colour rayColour(ray::Ray const &ray) noexcept {
 }
 
 /// @brief Render a 256 px by 256 px PPM image
-void renderImage() {
+void renderImage()
+{
   // Image
 
-  static constexpr auto aspectRatio{16.0 / 9.0};
-  static constexpr std::size_t imgWidth{400};
-  static constexpr std::size_t imgHeight{
-      static_cast<size_t>(imgWidth / aspectRatio)};
+  static constexpr auto aspectRatio {16.0 / 9.0};
+  static constexpr std::size_t imgWidth {400};
+  static constexpr std::size_t imgHeight {static_cast<size_t>(imgWidth / aspectRatio)};
 
   // Camera
 
-  static constexpr auto viewportHeight{2.0};
-  static constexpr auto viewportWidth{aspectRatio * viewportHeight};
-  static constexpr auto focalLength{1.0};
+  static constexpr auto viewportHeight {2.0};
+  static constexpr auto viewportWidth {aspectRatio * viewportHeight};
+  static constexpr auto focalLength {1.0};
 
   static constexpr auto origin = ray::Point3(0, 0, 0);
   static constexpr auto horizontal = vec3::Vec3(viewportWidth, 0, 0);
   static constexpr auto vertical = vec3::Vec3(0, viewportHeight, 0);
-  static constexpr auto lowerLeftCorner =
-      origin - horizontal / 2 - vertical / 2 - vec3::Vec3(0, 0, focalLength);
+  static constexpr auto lowerLeftCorner = origin - horizontal / 2 - vertical / 2 - vec3::Vec3(0, 0, focalLength);
 
   // Render
 
@@ -90,8 +90,7 @@ void renderImage() {
     for (std::size_t i = 0; i < imgWidth; ++i) {
       auto const u = static_cast<double>(i) / (imgWidth - 1);
       auto const v = static_cast<double>(j) / (imgHeight - 1);
-      auto const ray = ray::Ray(origin, lowerLeftCorner + u * horizontal +
-                                            v * vertical - origin);
+      auto const ray = ray::Ray(origin, lowerLeftCorner + u * horizontal + v * vertical - origin);
 
       auto const pixelColour = rayColour(ray);
       auto const colour = colour::mapToByteRange(pixelColour);
@@ -101,4 +100,4 @@ void renderImage() {
 
   std::clog << "\rDone.            \n";
 }
-} // namespace rt
+}   // namespace rt

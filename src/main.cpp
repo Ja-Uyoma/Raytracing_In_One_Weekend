@@ -23,9 +23,11 @@
 // DEALINGS IN THE SOFTWARE.
 
 #include "Main.hpp"
+
 #include <cstdlib>
 
-int main() {
+int main()
+{
   rt::renderImage();
 
   return EXIT_SUCCESS;

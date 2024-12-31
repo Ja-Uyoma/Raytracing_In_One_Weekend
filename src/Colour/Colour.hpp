@@ -30,7 +30,8 @@
 
 namespace rt::colour {
 
-class Colour {
+class Colour
+{
 public:
   /**
    * @brief Create a default Colour instance
@@ -45,78 +46,85 @@ public:
    * @param[in] b The blue colour value
    * @param[in] g The green colour value
    */
-  explicit constexpr Colour(double r, double g, double b) noexcept
-      : m_data{r, g, b} {}
+  explicit constexpr Colour(double r, double g, double b) noexcept : m_data {r, g, b}
+  {
+  }
 
   /**
    * @brief Get the red Colour value
    *
    * @return The red Colour value
    */
-  constexpr double const &r() const noexcept { return m_data[0]; }
+  constexpr double const& r() const noexcept
+  {
+    return m_data[0];
+  }
 
   /**
    * @brief Get the green Colour value
    *
    * @return The green Colour value
    */
-  constexpr double const &g() const noexcept { return m_data[1]; }
+  constexpr double const& g() const noexcept
+  {
+    return m_data[1];
+  }
 
   /**
    * @brief Get the blue Colour value
    *
    * @return The blue Colour value
    */
-  constexpr double const &b() const noexcept { return m_data[2]; }
+  constexpr double const& b() const noexcept
+  {
+    return m_data[2];
+  }
 
 private:
-  std::array<double, 3> m_data{0, 0, 0};
+  std::array<double, 3> m_data {0, 0, 0};
 
   /// \brief Get the sum of two colours
   /// \param[in] first The first colour
   /// \param[in] second The second colour
   /// \returns A new colour from the sum of the two original colours
-  friend constexpr Colour operator+(Colour const &first,
-                                    Colour const &second) noexcept {
-    return Colour(first.r() + second.r(), first.g() + second.g(),
-                  first.b() + second.b());
+  friend constexpr Colour operator+(Colour const& first, Colour const& second) noexcept
+  {
+    return Colour(first.r() + second.r(), first.g() + second.g(), first.b() + second.b());
   }
 
   /// \brief Get the scalar multiple of a given colour
   /// \param[in] scalar The scalar to be multiplied with the original colour
   /// \param[in] colour The initial colour
   /// \returns A new colour from the scalar multiple of the original colour
-  friend constexpr Colour operator*(double const scalar,
-                                    Colour const &colour) noexcept {
-    return Colour(scalar * colour.r(), scalar * colour.g(),
-                  scalar * colour.b());
+  friend constexpr Colour operator*(double const scalar, Colour const& colour) noexcept
+  {
+    return Colour(scalar * colour.r(), scalar * colour.g(), scalar * colour.b());
   }
 
   /// \brief Determine whether two colours are equal or not
   /// \param[in] first The first colour
   /// \param[in] second The second colour
   /// \returns True if the colours are the same, and false otherwise
-  friend constexpr bool operator==(Colour const &first,
-                                   Colour const &second) noexcept {
-    return (first.r() == second.r()) and (first.g() == second.g()) and
-           (first.b() == second.b());
+  friend constexpr bool operator==(Colour const& first, Colour const& second) noexcept
+  {
+    return (first.r() == second.r()) and (first.g() == second.g()) and (first.b() == second.b());
   }
 };
 
 /// \brief Map each individual colour component to the range [0, 255]
 /// \param[in] colour The colour to be mapped to the specified range
 /// \returns A new colour whose colour components lie within the [0, 255] range
-constexpr Colour mapToByteRange(Colour const &colour) noexcept {
-  return Colour(static_cast<int>(255.999 * colour.r()),
-                static_cast<int>(255.999 * colour.g()),
+[[nodiscard]] constexpr Colour mapToByteRange(Colour const& colour) noexcept
+{
+  return Colour(static_cast<int>(255.999 * colour.r()), static_cast<int>(255.999 * colour.g()),
                 static_cast<int>(255.999 * colour.b()));
 }
 
 /// @brief Write the value of each colour component to the given output stream
-/// @param out The output stream to write to
-/// @param pixelColour The colour of a single pixel in RGB format
-void writeColour(std::ostream &out, Colour const &pixelColour) noexcept;
+/// @param[inout] out The output stream to write to
+/// @param[in] pixelColour The colour of a single pixel in RGB format
+void writeColour(std::ostream& out, Colour const& pixelColour) noexcept;
 
-} // namespace rt::colour
+}   // namespace rt::colour
 
 #endif
