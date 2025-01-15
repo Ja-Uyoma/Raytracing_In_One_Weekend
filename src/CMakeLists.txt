@@ -7,6 +7,7 @@ target_include_directories(app
         "${PROJECT_SOURCE_DIR}/src/Colour"
         "${PROJECT_SOURCE_DIR}/src/Main"
         "${PROJECT_SOURCE_DIR}/src/Hittable"
+        "${PROJECT_SOURCE_DIR}/src/Sphere"
 )
 
 target_sources(app
@@ -14,6 +15,7 @@ target_sources(app
         main.cpp 
         "${PROJECT_SOURCE_DIR}/src/Main/Main.cpp"
         "${PROJECT_SOURCE_DIR}/src/Colour/Colour.cpp"
+        "${PROJECT_SOURCE_DIR}/src/Sphere/Sphere.cpp"
 )
 
 target_compile_features(app 
