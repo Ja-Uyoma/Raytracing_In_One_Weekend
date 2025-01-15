@@ -37,7 +37,7 @@ inline constexpr auto pi = std::numbers::pi;
 /// Convert an angle in degrees to radians
 /// \param[in] degrees An angle in degrees
 /// \returns The value of the angle in radians
-inline constexpr double degreesToRadians(double degrees) noexcept
+constexpr double degreesToRadians(double degrees) noexcept
 {
   return degrees * pi / 180.0;
 }
