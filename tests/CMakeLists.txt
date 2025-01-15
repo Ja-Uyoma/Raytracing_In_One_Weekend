@@ -15,6 +15,9 @@ target_include_directories(tests
         "${PROJECT_SOURCE_DIR}/src/Vec3"
         "${PROJECT_SOURCE_DIR}/src/Colour"
         "${PROJECT_SOURCE_DIR}/src/Main"
+        "${PROJECT_SOURCE_DIR}/src/Hittable"
+        "${PROJECT_SOURCE_DIR}/src/Sphere"
+        "${PROJECT_SOURCE_DIR}/src/Utilities"
 )
 
 target_sources(tests
@@ -25,6 +28,8 @@ target_sources(tests
         "${PROJECT_SOURCE_DIR}/src/Colour/Colour.cpp"
         Main/Main.test.cpp
         "${PROJECT_SOURCE_DIR}/src/Main/Main.cpp"
+        "${PROJECT_SOURCE_DIR}/src/Sphere/Sphere.cpp"
+        "${PROJECT_SOURCE_DIR}/src/Hittable/HittableList.cpp"
 )
 
 target_compile_features(tests
