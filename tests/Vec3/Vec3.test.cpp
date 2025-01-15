@@ -136,4 +136,10 @@ TEST_CASE("The length is computed", "[Vec3]")
 
   REQUIRE(vec.length() == std::sqrt(14));
 }
+
+TEST_CASE("Method lengthSquared gets the sum of the squares of the vector's components", "[Vec3]")
+{
+  constexpr auto vec = vec3::Vec3(1, 2, 3);
+  REQUIRE(vec.lengthSquared() == vec3::getDotProduct(vec, vec));
+}
 }   // namespace rt
