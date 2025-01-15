@@ -26,6 +26,7 @@
 #define MAIN_HPP
 
 #include "Colour.hpp"
+#include "Hittable.hpp"
 #include "Ray.hpp"
 
 namespace rt {
@@ -73,7 +74,7 @@ constexpr double rayHasHitSphere(ray::Point3 const& centre, double const radius,
 /// \brief Produce a linear blend of white and blue colours
 /// \param[in] ray The ray whose colour is to be computed
 /// \returns A linear blend of white and blue colours
-colour::Colour rayColour(ray::Ray const& ray) noexcept;
+colour::Colour rayColour(ray::Ray const& ray, hittable::Hittable const& world) noexcept;
 
 /// \brief Render a 256 px by 256 px PPM image
 void renderImage();

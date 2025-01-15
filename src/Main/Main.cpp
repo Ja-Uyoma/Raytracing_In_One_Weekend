@@ -25,33 +25,31 @@
 #include "Main.hpp"
 
 #include "Colour.hpp"
+#include "Hittable.hpp"
+#include "HittableList.hpp"
 #include "Ray.hpp"
+#include "Sphere.hpp"
+#include "Utilities.hpp"
 #include "Vec3.hpp"
 #include <cstddef>
 #include <iostream>
+#include <memory>
 
 namespace rt {
 
 /// \brief Produce a linear blend of white and blue colours
 /// \param[in] ray The ray whose colour is to be computed
 /// \returns A linear blend of white and blue colours
-colour::Colour rayColour(ray::Ray const& ray) noexcept
+colour::Colour rayColour(ray::Ray const& ray, hittable::Hittable const& world) noexcept
 {
-  auto t = rayHasHitSphere(ray::Point3(0, 0, -1), 0.5, ray);
+  hittable::HitRecord record;
 
-  // If the ray has hit the sphere in the viewport, then colour that spot red
-  if (t > 0.0) {
-    auto const normal = vec3::getUnitVector(ray.at(t) - vec3::Vec3(0, 0, -1));
-    return 0.5 * colour::Colour(normal.x() + 1, normal.y() + 1, normal.z() + 1);
+  if (world.hit(ray, 0, rt::infinity, record)) {
+    return 0.5 * (colour::Colour(record.normal) + colour::Colour(1, 1, 1));
   }
 
-  // Get the ray direction and scale it to unit length (so -1.0 < y < 1.0)
-  // Because we're using the y height after normalizing the vector, there'll be
-  // a horizontal gradient to the colour in addition to the vertical gradient
   auto const unitDirection = vec3::getUnitVector(ray.getDirection());
-
-  // Take the y height and scale it to the range 0.0 <= t <= 1.0
-  t = 0.5 * (unitDirection.y() + 1.0);
+  auto const t = 0.5 * (unitDirection.y() + 1.0);
 
   // When t = 1.0, we'll have the colour blue
   // When t = 0.0, we'll have the colour white
@@ -71,6 +69,12 @@ void renderImage()
   static constexpr auto aspectRatio {16.0 / 9.0};
   static constexpr std::size_t imgWidth {400};
   static constexpr std::size_t imgHeight {static_cast<size_t>(imgWidth / aspectRatio)};
+
+  // World
+
+  hittable::HittableList world;
+  world.add(std::make_shared<rt::sphere::Sphere>(ray::Point3(0, 0, -1), 0.5));
+  world.add(std::make_shared<rt::sphere::Sphere>(ray::Point3(0, -100.5, -1), 100));
 
   // Camera
 
@@ -95,7 +99,7 @@ void renderImage()
       auto const v = static_cast<double>(j) / (imgHeight - 1);
       auto const ray = ray::Ray(origin, lowerLeftCorner + u * horizontal + v * vertical - origin);
 
-      auto const pixelColour = rayColour(ray);
+      auto const pixelColour = rayColour(ray, world);
       auto const colour = colour::mapToByteRange(pixelColour);
       colour::writeColour(std::cout, colour);
     }
