@@ -56,17 +56,17 @@ constexpr double rayHasHitSphere(ray::Point3 const& centre, double const radius,
   // Recall the quadratic formula, x = (-b ± sqrt(b^2 - 4ac) / 2a).
   // We now proceed to calculate our a, b, and c values.
 
-  auto const a = vec3::getDotProduct(ray.getDirection(), ray.getDirection());
-  auto const b = 2.0 * vec3::getDotProduct(oc, ray.getDirection());
-  auto const c = vec3::getDotProduct(oc, oc) - (radius * radius);
+  auto const a = ray.getDirection().lengthSquared();
+  auto const halfB = vec3::getDotProduct(oc, ray.getDirection());
+  auto const c = oc.lengthSquared() - (radius * radius);
 
-  auto const discriminant = (b * b) - (4 * a * c);
+  auto const discriminant = (halfB * halfB) - (a * c);
 
   if (discriminant < 0) {
     return -1.0;
   }
   else {
-    return (-b - std::sqrt(discriminant)) / (2.0 * a);
+    return (-halfB - std::sqrt(discriminant)) / a;
   }
 }
 
