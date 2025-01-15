@@ -37,9 +37,12 @@ namespace rt {
 /// \returns A linear blend of white and blue colours
 colour::Colour rayColour(ray::Ray const& ray) noexcept
 {
+  auto t = rayHasHitSphere(ray::Point3(0, 0, -1), 0.5, ray);
+
   // If the ray has hit the sphere in the viewport, then colour that spot red
-  if (rayHasHitSphere(ray::Point3(0, 0, -1), 0.5, ray)) {
-    return colour::Colour(1, 0, 0);
+  if (t > 0.0) {
+    auto const normal = vec3::getUnitVector(ray.at(t) - vec3::Vec3(0, 0, -1));
+    return 0.5 * colour::Colour(normal.x() + 1, normal.y() + 1, normal.z() + 1);
   }
 
   // Get the ray direction and scale it to unit length (so -1.0 < y < 1.0)
@@ -48,7 +51,7 @@ colour::Colour rayColour(ray::Ray const& ray) noexcept
   auto const unitDirection = vec3::getUnitVector(ray.getDirection());
 
   // Take the y height and scale it to the range 0.0 <= t <= 1.0
-  auto const t = 0.5 * (unitDirection.y() + 1.0);
+  t = 0.5 * (unitDirection.y() + 1.0);
 
   // When t = 1.0, we'll have the colour blue
   // When t = 0.0, we'll have the colour white

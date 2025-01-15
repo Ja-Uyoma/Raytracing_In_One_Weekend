@@ -35,7 +35,7 @@ namespace rt {
 /// \param[in] radius The radius of the sphere
 /// \param[in] ray The ray under test
 /// \returns True if the ray has hit the sphere, and false otherwise
-constexpr bool rayHasHitSphere(ray::Point3 const& centre, double const radius, ray::Ray const& ray) noexcept
+constexpr double rayHasHitSphere(ray::Point3 const& centre, double const radius, ray::Ray const& ray) noexcept
 {
   // Get the vector from the ray origin to the sphere centre
   auto const oc = ray.getOrigin() - centre;
@@ -61,7 +61,13 @@ constexpr bool rayHasHitSphere(ray::Point3 const& centre, double const radius, r
   auto const c = vec3::getDotProduct(oc, oc) - (radius * radius);
 
   auto const discriminant = (b * b) - (4 * a * c);
-  return discriminant > 0;
+
+  if (discriminant < 0) {
+    return -1.0;
+  }
+  else {
+    return (-b - std::sqrt(discriminant)) / (2.0 * a);
+  }
 }
 
 /// \brief Produce a linear blend of white and blue colours
