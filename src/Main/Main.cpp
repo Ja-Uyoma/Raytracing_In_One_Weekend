@@ -33,7 +33,6 @@
 #include "Vec3.hpp"
 #include <cstddef>
 #include <iostream>
-#include <memory>
 
 namespace rt {
 
