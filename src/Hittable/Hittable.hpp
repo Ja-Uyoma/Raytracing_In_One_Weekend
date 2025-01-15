@@ -30,11 +30,19 @@
 
 namespace rt::hittable {
 
-struct HitRecord
+class HitRecord
 {
+public:
   ray::Point3 point;
   vec3::Vec3 normal;
   double t;
+  bool frontFace;
+
+  constexpr void setFaceNormal(ray::Ray const& ray, vec3::Vec3 const& outwardNormal) noexcept
+  {
+    frontFace = vec3::getDotProduct(ray.getDirection(), outwardNormal) < 0;
+    normal = frontFace ? outwardNormal : -outwardNormal;
+  }
 };
 
 class Hittable
