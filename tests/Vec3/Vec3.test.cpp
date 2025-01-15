@@ -225,4 +225,12 @@ TEST_CASE("getCrossProduct computes the cross product", "[Vec3]")
   REQUIRE(w == vec3::Vec3(-3, 6, -3));
 }
 
+TEST_CASE("getUnitVector computes the unit vector for a given vector", "[Vec3]")
+{
+  static constexpr auto u = vec3::Vec3(1, 2, 3);
+  auto const v = vec3::getUnitVector(u);
+
+  REQUIRE(v.length() == 1);
+}
+
 }   // namespace rt
