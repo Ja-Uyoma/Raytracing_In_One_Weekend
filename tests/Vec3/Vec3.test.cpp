@@ -26,6 +26,7 @@
 
 #include <catch2/catch_test_macros.hpp>
 #include <cmath>
+#include <sstream>
 
 namespace rt {
 TEST_CASE("Vectors are constructed", "[Vec3]")
@@ -142,4 +143,15 @@ TEST_CASE("Method lengthSquared gets the sum of the squares of the vector's comp
   constexpr auto vec = vec3::Vec3(1, 2, 3);
   REQUIRE(vec.lengthSquared() == vec3::getDotProduct(vec, vec));
 }
+
+TEST_CASE("Vectors can be printed to an output stream", "[Vec3]")
+{
+  std::stringstream ss;
+  constexpr auto vec = vec3::Vec3(1, 2, 3);
+
+  ss << vec;
+
+  REQUIRE(ss.view() == std::string_view("1 2 3"));
+}
+
 }   // namespace rt
