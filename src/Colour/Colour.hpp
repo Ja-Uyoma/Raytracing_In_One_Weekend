@@ -51,6 +51,14 @@ public:
   }
 
   /**
+   * @brief Create a Colour object from a Vec3 object
+   * @param[in] v The Vec3 object from which the Colour object is to be created
+   */
+  constexpr explicit Colour(vec3::Vec3 const& v) noexcept : m_data(v)
+  {
+  }
+
+  /**
    * @brief Get the red Colour value
    *
    * @return The red Colour value
