@@ -154,4 +154,65 @@ TEST_CASE("Vectors can be printed to an output stream", "[Vec3]")
   REQUIRE(ss.view() == std::string_view("1 2 3"));
 }
 
+TEST_CASE("operator overloads for 2 independent vectors", "[Vec3]")
+{
+  SECTION("vector-vector addition")
+  {
+    static constexpr auto u = vec3::Vec3(1, 2, 3);
+    static constexpr auto v = vec3::Vec3(4, 5, 6);
+
+    static constexpr auto w = u + v;
+
+    REQUIRE(w == vec3::Vec3(5, 7, 9));
+  }
+
+  SECTION("vector-vector subtraction")
+  {
+    static constexpr auto u = vec3::Vec3(1, 2, 3);
+    static constexpr auto v = vec3::Vec3(4, 5, 6);
+
+    static constexpr auto w = u - v;
+
+    REQUIRE(w == vec3::Vec3(-3, -3, -3));
+  }
+
+  SECTION("vector-vector multiplication")
+  {
+    static constexpr auto u = vec3::Vec3(1, 2, 3);
+    static constexpr auto v = vec3::Vec3(4, 5, 6);
+
+    static constexpr auto w = u * v;
+
+    REQUIRE(w == vec3::Vec3(4, 10, 18));
+  }
+
+  SECTION("vector-scalar multiplication")
+  {
+    static constexpr auto u = vec3::Vec3(1, 2, 3);
+    static constexpr auto v = 10;
+
+    static constexpr auto w = u * v;
+
+    REQUIRE(w == vec3::Vec3(10, 20, 30));
+  }
+
+  SECTION("vector-scalar division")
+  {
+    static constexpr auto u = vec3::Vec3(1.0, 2.0, 3.0);
+    static constexpr auto v = 2;
+
+    static constexpr auto w = u / v;
+
+    REQUIRE(w == vec3::Vec3(0.5, 1.0, 1.5));
+  }
+
+  SECTION("operator== returns true if 2 vectors are equal, and false otherwise")
+  {
+    static constexpr auto u = vec3::Vec3(1, 2, 3);
+    static constexpr auto v = vec3::Vec3(4, 5, 6);
+
+    REQUIRE((u == u and v == v and u != v));
+  }
+}
+
 }   // namespace rt
