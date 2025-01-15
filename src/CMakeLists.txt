@@ -6,6 +6,7 @@ target_include_directories(app
         "${PROJECT_SOURCE_DIR}/src/Vec3"
         "${PROJECT_SOURCE_DIR}/src/Colour"
         "${PROJECT_SOURCE_DIR}/src/Main"
+        "${PROJECT_SOURCE_DIR}/src/Hittable"
 )
 
 target_sources(app
