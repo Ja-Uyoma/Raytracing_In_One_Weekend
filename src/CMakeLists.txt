@@ -8,6 +8,7 @@ target_include_directories(app
         "${PROJECT_SOURCE_DIR}/src/Main"
         "${PROJECT_SOURCE_DIR}/src/Hittable"
         "${PROJECT_SOURCE_DIR}/src/Sphere"
+        "${PROJECT_SOURCE_DIR}/src/Utilities"
 )
 
 target_sources(app
