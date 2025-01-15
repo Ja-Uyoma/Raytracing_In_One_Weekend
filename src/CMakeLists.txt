@@ -16,6 +16,7 @@ target_sources(app
         "${PROJECT_SOURCE_DIR}/src/Main/Main.cpp"
         "${PROJECT_SOURCE_DIR}/src/Colour/Colour.cpp"
         "${PROJECT_SOURCE_DIR}/src/Sphere/Sphere.cpp"
+        "${PROJECT_SOURCE_DIR}/src/Hittable/HittableList.cpp"
 )
 
 target_compile_features(app 
