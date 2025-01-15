@@ -25,7 +25,7 @@
 #ifndef COLOUR_HPP
 #define COLOUR_HPP
 
-#include <array>
+#include "Vec3.hpp"
 #include <iostream>
 
 namespace rt::colour {
@@ -55,9 +55,9 @@ public:
    *
    * @return The red Colour value
    */
-  constexpr double const& r() const noexcept
+  constexpr double r() const noexcept
   {
-    return m_data[0];
+    return m_data.x();
   }
 
   /**
@@ -65,9 +65,9 @@ public:
    *
    * @return The green Colour value
    */
-  constexpr double const& g() const noexcept
+  constexpr double g() const noexcept
   {
-    return m_data[1];
+    return m_data.y();
   }
 
   /**
@@ -75,13 +75,13 @@ public:
    *
    * @return The blue Colour value
    */
-  constexpr double const& b() const noexcept
+  constexpr double b() const noexcept
   {
-    return m_data[2];
+    return m_data.z();
   }
 
 private:
-  std::array<double, 3> m_data {0, 0, 0};
+  vec3::Vec3 m_data {};
 
   /// \brief Get the sum of two colours
   /// \param[in] first The first colour
