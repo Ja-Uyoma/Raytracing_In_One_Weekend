@@ -215,4 +215,14 @@ TEST_CASE("operator overloads for 2 independent vectors", "[Vec3]")
   }
 }
 
+TEST_CASE("getCrossProduct computes the cross product", "[Vec3]")
+{
+  static constexpr auto u = vec3::Vec3(1, 2, 3);
+  static constexpr auto v = vec3::Vec3(4, 5, 6);
+
+  static constexpr auto w = vec3::getCrossProduct(u, v);
+
+  REQUIRE(w == vec3::Vec3(-3, 6, -3));
+}
+
 }   // namespace rt
