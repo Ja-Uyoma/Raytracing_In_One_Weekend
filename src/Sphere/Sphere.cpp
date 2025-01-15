@@ -57,7 +57,8 @@ bool Sphere::hit(ray::Ray const& ray, double tMin, double tMax, hittable::HitRec
 
   record.t = root;
   record.point = ray.at(record.t);
-  record.normal = (record.point - m_centre) / m_radius;
+  auto const& outwardNormal = (record.point - m_centre) / m_radius;
+  record.setFaceNormal(ray, outwardNormal);
 
   return true;
 }
