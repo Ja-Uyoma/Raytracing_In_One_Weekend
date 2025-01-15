@@ -227,7 +227,7 @@ private:
 /// @return The dot product of the 2 vectors
 constexpr double getDotProduct(Vec3 const& u, Vec3 const& v) noexcept
 {
-  return (u.x() * v.x() + u.y() * v.y() + u.z() + v.z());
+  return (u.x() * v.x() + u.y() * v.y() + u.z() * v.z());
 }
 
 /// @brief Get the cross product of 2 given vectors
