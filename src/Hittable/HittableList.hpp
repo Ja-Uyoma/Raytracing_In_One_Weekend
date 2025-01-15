@@ -38,8 +38,8 @@ public:
   constexpr explicit HittableList() noexcept = default;
 
   /// Constructor
-  /// \param[in] object A std::shared_ptr to the Hittable object to be added to the HittableList instance
-  constexpr explicit HittableList(std::shared_ptr<Hittable> const& object) noexcept
+  /// \param[in] object A pointer to the Hittable object to be added to the HittableList instance
+  constexpr explicit HittableList(Hittable* object) noexcept
   {
     add(object);
   }
@@ -51,10 +51,10 @@ public:
   }
 
   /// Add a Hittable object to the HittableList instance
-  /// \param[in] object A std::shared_ptr to the Hittable object to be added to the HittableList instance
-  constexpr void add(std::shared_ptr<Hittable> const& object)
+  /// \param[in] object A pointer to the Hittable object to be added to the HittableList instance
+  constexpr void add(Hittable* object)
   {
-    m_objects.push_back(object);
+    m_objects.push_back(std::unique_ptr<Hittable>(object));
   }
 
   /// Check if a ray has intersected any of the Hittable objects in the HittableList instance
@@ -66,7 +66,7 @@ public:
   bool hit(ray::Ray const& ray, double tMin, double tMax, HitRecord& record) const noexcept override;
 
 private:
-  std::vector<std::shared_ptr<Hittable>> m_objects;
+  std::vector<std::unique_ptr<Hittable>> m_objects;
 };
 
 }   // namespace rt::hittable
