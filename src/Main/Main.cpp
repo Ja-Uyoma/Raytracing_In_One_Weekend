@@ -24,6 +24,7 @@
 
 #include "Main.hpp"
 
+#include "Camera.hpp"
 #include "Colour.hpp"
 #include "Hittable.hpp"
 #include "HittableList.hpp"
@@ -68,6 +69,7 @@ void renderImage()
   static constexpr auto aspectRatio {16.0 / 9.0};
   static constexpr std::size_t imgWidth {400};
   static constexpr std::size_t imgHeight {static_cast<size_t>(imgWidth / aspectRatio)};
+  static constexpr std::size_t samplesPerPixel = 100;
 
   // World
 
@@ -77,14 +79,7 @@ void renderImage()
 
   // Camera
 
-  static constexpr auto viewportHeight {2.0};
-  static constexpr auto viewportWidth {aspectRatio * viewportHeight};
-  static constexpr auto focalLength {1.0};
-
-  static constexpr auto origin = ray::Point3(0, 0, 0);
-  static constexpr auto horizontal = vec3::Vec3(viewportWidth, 0, 0);
-  static constexpr auto vertical = vec3::Vec3(0, viewportHeight, 0);
-  static constexpr auto lowerLeftCorner = origin - horizontal / 2 - vertical / 2 - vec3::Vec3(0, 0, focalLength);
+  camera::Camera camera;
 
   // Render
 
@@ -94,12 +89,16 @@ void renderImage()
     std::clog << "\rScanlines remaining: " << j << '\n' << std::flush;
 
     for (std::size_t i = 0; i < imgWidth; ++i) {
-      auto const u = static_cast<double>(i) / (imgWidth - 1);
-      auto const v = static_cast<double>(j) / (imgHeight - 1);
-      auto const ray = ray::Ray(origin, lowerLeftCorner + u * horizontal + v * vertical - origin);
+      colour::Colour pixelColour(0, 0, 0);
 
-      auto const pixelColour = rayColour(ray, world);
-      auto const colour = colour::mapToByteRange(pixelColour);
+      for (std::size_t s = 0; s < samplesPerPixel; ++s) {
+        auto u = (static_cast<double>(i) + getRandomDouble()) / (imgWidth - 1);
+        auto v = (static_cast<double>(j) + getRandomDouble()) / (imgHeight - 1);
+        ray::Ray ray = camera.getRay(u, v);
+        pixelColour += rayColour(ray, world);
+      }
+
+      auto const colour = colour::mapToByteRange(pixelColour, samplesPerPixel);
       colour::writeColour(std::cout, colour);
     }
   }
