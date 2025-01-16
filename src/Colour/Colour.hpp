@@ -88,6 +88,19 @@ public:
     return m_data.z();
   }
 
+  /**
+   * @brief Add another vector to this vector
+   *
+   * @param other The vector to be added to this vector
+   * @return constexpr Colour& This vector with its fields updated
+   */
+  constexpr Colour& operator+=(Colour const& other) noexcept
+  {
+    m_data += other.m_data;
+
+    return *this;
+  }
+
 private:
   vec3::Vec3 m_data {};
 
