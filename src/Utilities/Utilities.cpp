@@ -22,34 +22,26 @@
 // ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#ifndef UTILITIES_HPP
-#define UTILITIES_HPP
+#include "Utilities.hpp"
 
-#include <cmath>
-#include <limits>
-#include <numbers>
+#include <random>
 
 namespace rt {
 
-inline constexpr auto infinity = std::numeric_limits<double>::infinity();
-inline constexpr auto pi = std::numbers::pi;
-
-/// Convert an angle in degrees to radians
-/// \param[in] degrees An angle in degrees
-/// \returns The value of the angle in radians
-constexpr double degreesToRadians(double degrees) noexcept
-{
-  return degrees * pi / 180.0;
-}
-
 /// Get a random real number in the range [0, 1)
 /// \returns A random real number in the range [0, 1)
-double getRandomDouble();
+double getRandomDouble()
+{
+  static std::uniform_real_distribution<double> distribution(0.0, 1.0);
+  static std::mt19937 generator;
+  return distribution(generator);
+}
 
 /// Get a random real number in the range [min, max)
 /// \returns A random real number in the range [min, max)
-double getRandomDoubleInRange(double min, double max);
+double getRandomDoubleInRange(double min, double max)
+{
+  return min + (max - min) * getRandomDouble();
+}
 
 }   // namespace rt
-
-#endif
