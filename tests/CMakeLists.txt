@@ -18,6 +18,7 @@ target_include_directories(tests
         "${PROJECT_SOURCE_DIR}/src/Hittable"
         "${PROJECT_SOURCE_DIR}/src/Sphere"
         "${PROJECT_SOURCE_DIR}/src/Utilities"
+        "${PROJECT_SOURCE_DIR}/src/Camera"
 )
 
 target_sources(tests
@@ -30,6 +31,7 @@ target_sources(tests
         "${PROJECT_SOURCE_DIR}/src/Main/Main.cpp"
         "${PROJECT_SOURCE_DIR}/src/Sphere/Sphere.cpp"
         "${PROJECT_SOURCE_DIR}/src/Hittable/HittableList.cpp"
+        "${PROJECT_SOURCE_DIR}/src/Utilities/Utilities.cpp"
 )
 
 target_compile_features(tests
