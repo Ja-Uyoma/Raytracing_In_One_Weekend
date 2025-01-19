@@ -139,6 +139,14 @@ public:
     return (e[0] * e[0]) + (e[1] * e[1]) + (e[2] * e[2]);
   }
 
+  /// Get a Vec3 with all coordinates randomly generated and in the range [0, 1)
+  /// \returns A Vec3 with all coordinates randomly generated and in the range [0, 1)
+  static Vec3 createRandomVec();
+
+  /// Get a Vec3 with all coordinates randomly generated and in the range [min, max)
+  /// \returns A Vec3 with all coordinates randomly generated and in the range [min, max)
+  static Vec3 createRandomVecInRange(double min, double max);
+
 private:
   std::array<double, 3> e {0, 0, 0};
 
