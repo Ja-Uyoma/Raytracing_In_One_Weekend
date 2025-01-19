@@ -42,4 +42,20 @@ Vec3 Vec3::createRandomVecInRange(double min, double max)
   return Vec3(getRandomDoubleInRange(min, max), getRandomDoubleInRange(min, max), getRandomDoubleInRange(min, max));
 }
 
+/// Get a point (Vec3) that lies in a sphere of unit radius
+/// \returns A point (Vec3) that lies in a sphere of unit radius
+Vec3 getRandomVecInUnitSphere()
+{
+  while (true) {
+    auto const point = Vec3::createRandomVecInRange(-1, 1);
+
+    if (point.lengthSquared() >= 1) {
+      continue;
+    }
+    else {
+      return point;
+    }
+  }
+}
+
 }   // namespace rt::vec3

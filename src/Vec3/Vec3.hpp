@@ -254,6 +254,11 @@ constexpr Vec3 getUnitVector(Vec3 const& v) noexcept
 {
   return v / v.length();
 }
+
+/// Get a point (Vec3) that lies in a sphere of unit radius
+/// \returns A point (Vec3) that lies in a sphere of unit radius
+Vec3 getRandomVecInUnitSphere();
+
 }   // namespace rt::vec3
 
 #endif
