@@ -74,7 +74,7 @@ constexpr double rayHasHitSphere(ray::Point3 const& centre, double const radius,
 /// \brief Produce a linear blend of white and blue colours
 /// \param[in] ray The ray whose colour is to be computed
 /// \returns A linear blend of white and blue colours
-colour::Colour rayColour(ray::Ray const& ray, hittable::Hittable const& world) noexcept;
+colour::Colour rayColour(ray::Ray const& ray, hittable::Hittable const& world, int depthOfRecursion) noexcept;
 
 /// \brief Render a 256 px by 256 px PPM image
 void renderImage();

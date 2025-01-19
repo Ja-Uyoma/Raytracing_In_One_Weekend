@@ -40,12 +40,17 @@ namespace rt {
 /// \brief Produce a linear blend of white and blue colours
 /// \param[in] ray The ray whose colour is to be computed
 /// \returns A linear blend of white and blue colours
-colour::Colour rayColour(ray::Ray const& ray, hittable::Hittable const& world) noexcept
+colour::Colour rayColour(ray::Ray const& ray, hittable::Hittable const& world, int depthOfRecursion) noexcept
 {
   hittable::HitRecord record;
 
+  if (depthOfRecursion <= 0) {
+    return colour::Colour(0, 0, 0);
+  }
+
   if (world.hit(ray, 0, rt::infinity, record)) {
-    return 0.5 * (colour::Colour(record.normal) + colour::Colour(1, 1, 1));
+    auto const target = record.point + record.normal + vec3::getRandomVecInUnitSphere();
+    return 0.5 * rayColour(ray::Ray(record.point, target - record.point), world, depthOfRecursion - 1);
   }
 
   auto const unitDirection = vec3::getUnitVector(ray.getDirection());
@@ -70,6 +75,7 @@ void renderImage()
   static constexpr std::size_t imgWidth {400};
   static constexpr std::size_t imgHeight {static_cast<size_t>(imgWidth / aspectRatio)};
   static constexpr std::size_t samplesPerPixel = 100;
+  static constexpr int maxDepth = 50;
 
   // World
 
@@ -95,7 +101,7 @@ void renderImage()
         auto u = (static_cast<double>(i) + getRandomDouble()) / (imgWidth - 1);
         auto v = (static_cast<double>(j) + getRandomDouble()) / (imgHeight - 1);
         ray::Ray ray = camera.getRay(u, v);
-        pixelColour += rayColour(ray, world);
+        pixelColour += rayColour(ray, world, maxDepth);
       }
 
       auto const colour = colour::mapToByteRange(pixelColour, samplesPerPixel);
