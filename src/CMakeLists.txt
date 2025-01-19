@@ -20,6 +20,7 @@ target_sources(app
         "${PROJECT_SOURCE_DIR}/src/Sphere/Sphere.cpp"
         "${PROJECT_SOURCE_DIR}/src/Hittable/HittableList.cpp"
         "${PROJECT_SOURCE_DIR}/src/Utilities/Utilities.cpp"
+        "${PROJECT_SOURCE_DIR}/src/Vec3/Vec3.cpp"
 )
 
 target_compile_features(app 
