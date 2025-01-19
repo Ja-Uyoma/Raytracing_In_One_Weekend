@@ -143,9 +143,9 @@ private:
 
   // Divide each colour by the number of samples
 
-  auto const r = colour.r() * scale;
-  auto const g = colour.g() * scale;
-  auto const b = colour.b() * scale;
+  auto const r = std::sqrt(colour.r() * scale);
+  auto const g = std::sqrt(colour.g() * scale);
+  auto const b = std::sqrt(colour.b() * scale);
 
   return Colour(static_cast<int>(256 * std::clamp(r, 0.0, 0.999)), static_cast<int>(256 * std::clamp(g, 0.0, 0.999)),
                 static_cast<int>(256 * std::clamp(b, 0.0, 0.999)));
