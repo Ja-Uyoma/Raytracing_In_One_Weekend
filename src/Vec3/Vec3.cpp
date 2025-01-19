@@ -58,4 +58,11 @@ Vec3 getRandomVecInUnitSphere()
   }
 }
 
+/// Get a random unit vector in a unit sphere
+/// \returns A random unit vector in a unit sphere
+Vec3 getRandomUnitVector()
+{
+  return getUnitVector(getRandomVecInUnitSphere());
+}
+
 }   // namespace rt::vec3

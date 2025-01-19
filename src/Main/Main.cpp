@@ -49,7 +49,7 @@ colour::Colour rayColour(ray::Ray const& ray, hittable::Hittable const& world, i
   }
 
   if (world.hit(ray, 0.001, rt::infinity, record)) {
-    auto const target = record.point + record.normal + vec3::getRandomVecInUnitSphere();
+    auto const target = record.point + record.normal + vec3::getRandomUnitVector();
     return 0.5 * rayColour(ray::Ray(record.point, target - record.point), world, depthOfRecursion - 1);
   }
 
