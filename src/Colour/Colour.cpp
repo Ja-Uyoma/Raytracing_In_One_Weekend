@@ -24,7 +24,27 @@
 
 #include "Colour.hpp"
 
+#include <algorithm>
+
 namespace rt::colour {
+
+/// \brief Map each individual colour component to the range [0, 255]
+/// \param[in] colour The colour to be mapped to the specified range
+/// \param[in] samplesPerPixel The number of samples of each pixel
+/// \returns A new colour whose colour components lie within the [0, 255] range
+[[nodiscard]] Colour mapToByteRange(Colour const& colour, int samplesPerPixel) noexcept
+{
+  auto const scale = 1.0 / samplesPerPixel;
+
+  // Divide each colour by the number of samples
+
+  auto const r = std::sqrt(colour.r() * scale);
+  auto const g = std::sqrt(colour.g() * scale);
+  auto const b = std::sqrt(colour.b() * scale);
+
+  return Colour(static_cast<int>(256 * std::clamp(r, 0.0, 0.999)), static_cast<int>(256 * std::clamp(g, 0.0, 0.999)),
+                static_cast<int>(256 * std::clamp(b, 0.0, 0.999)));
+}
 
 /// @brief Write the value of each colour component to the given output stream
 /// @param[inout] out The output stream to write to
