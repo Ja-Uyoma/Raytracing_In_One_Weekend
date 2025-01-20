@@ -10,6 +10,7 @@ target_include_directories(app
         "${PROJECT_SOURCE_DIR}/src/Sphere"
         "${PROJECT_SOURCE_DIR}/src/Utilities"
         "${PROJECT_SOURCE_DIR}/src/Camera"
+        "${PROJECT_SOURCE_DIR}/src/Material"
 )
 
 target_sources(app
