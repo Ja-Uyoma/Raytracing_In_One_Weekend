@@ -233,4 +233,12 @@ TEST_CASE("getUnitVector computes the unit vector for a given vector", "[Vec3]")
   REQUIRE(v.length() == 1);
 }
 
+TEST_CASE("nearZero determines if a vector is very close to zero in all its dimensions")
+{
+  static constexpr auto u = vec3::Vec3(1e-9, 1e-10, 1e-11);
+  static constexpr auto v = vec3::Vec3(0, 1, 2);
+
+  REQUIRE((u.nearZero() == true and v.nearZero() == false));
+}
+
 }   // namespace rt
