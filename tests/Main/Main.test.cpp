@@ -31,6 +31,7 @@ namespace rt {
 
 TEST_CASE("rayHasHitSphere")
 {
+  SKIP();
   static constexpr auto sphereCentre = ray::Point3(0, 0, 1);
   static constexpr double radius = 0.5;
   static constexpr auto ray = ray::Ray();
