@@ -42,7 +42,13 @@ using ray::Ray;
 bool Lambertian::scatter([[maybe_unused]] Ray const& rayIn, HitRecord const& record, Colour& attenuation,
                          Ray& scattered) const
 {
-  auto const scatterDirection = record.normal + vec3::getRandomUnitVector();
+  auto scatterDirection = record.normal + vec3::getRandomUnitVector();
+
+  // Catch degenerate scatter direction
+  if (scatterDirection.nearZero()) {
+    scatterDirection = record.normal;
+  }
+
   scattered = Ray(record.point, scatterDirection);
   attenuation = m_albedo;
 
