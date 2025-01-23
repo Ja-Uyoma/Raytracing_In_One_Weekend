@@ -49,7 +49,7 @@ class Material
 public:
   virtual ~Material() = default;
   virtual bool scatter(ray::Ray const& rayIn, hittable::HitRecord const& record, colour::Colour& attenuation,
-                       ray::Ray& scattered) = 0;
+                       ray::Ray& scattered) const = 0;
 };
 
 }   // namespace rt::material
