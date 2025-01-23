@@ -28,6 +28,13 @@
 #include "Hittable.hpp"
 #include "Ray.hpp"
 
+// Forward declaration
+namespace rt::material {
+
+class Material;
+
+}
+
 namespace rt::sphere {
 
 class Sphere final : public hittable::Hittable
@@ -43,6 +50,7 @@ public:
 private:
   ray::Point3 m_centre {};
   double m_radius {};
+  material::Material* materialPtr;
 };
 
 }   // namespace rt::sphere
