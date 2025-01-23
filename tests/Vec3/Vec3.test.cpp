@@ -28,7 +28,8 @@
 #include <cmath>
 #include <sstream>
 
-namespace rt {
+namespace rt::vec3 {
+
 TEST_CASE("Vectors are constructed", "[Vec3]")
 {
   SECTION("Zeroed out by default")
@@ -241,4 +242,4 @@ TEST_CASE("nearZero determines if a vector is very close to zero in all its dime
   REQUIRE((u.nearZero() == true and v.nearZero() == false));
 }
 
-}   // namespace rt
+}   // namespace rt::vec3
