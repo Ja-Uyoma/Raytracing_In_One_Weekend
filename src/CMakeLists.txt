@@ -23,6 +23,7 @@ target_sources(app
         "${PROJECT_SOURCE_DIR}/src/Utilities/Utilities.cpp"
         "${PROJECT_SOURCE_DIR}/src/Vec3/Vec3.cpp"
         "${PROJECT_SOURCE_DIR}/src/Material/Lambertian.cpp"
+        "${PROJECT_SOURCE_DIR}/src/Material/Metal.cpp"
 )
 
 target_compile_features(app 
