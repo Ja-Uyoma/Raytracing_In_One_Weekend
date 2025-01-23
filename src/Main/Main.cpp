@@ -28,7 +28,9 @@
 #include "Colour.hpp"
 #include "Hittable.hpp"
 #include "HittableList.hpp"
+#include "Lambertian.hpp"
 #include "Material.hpp"
+#include "Metal.hpp"
 #include "Ray.hpp"
 #include "Sphere.hpp"
 #include "Utilities.hpp"
@@ -87,8 +89,16 @@ void renderImage()
   // World
 
   hittable::HittableList world;
-  world.add(new sphere::Sphere(ray::Point3(0, 0, -1), 0.5));
-  world.add(new sphere::Sphere(ray::Point3(0, -100.5, -1), 100));
+
+  auto materialGround = material::Lambertian(colour::Colour(0.8, 0.8, 0.0));
+  auto materialCentre = material::Lambertian(colour::Colour(0.7, 0.3, 0.3));
+  auto materialLeft = material::Metal(colour::Colour(0.8, 0.8, 0.8));
+  auto materialRight = material::Metal(colour::Colour(0.8, 0.6, 0.2));
+
+  world.add(new sphere::Sphere(ray::Point3(0, -100.5, -1), 100.0, &materialGround));
+  world.add(new sphere::Sphere(ray::Point3(0, 0, -1), 0.5, &materialCentre));
+  world.add(new sphere::Sphere(ray::Point3(-1.0, 0.0, -1.0), 0.5, &materialLeft));
+  world.add(new sphere::Sphere(ray::Point3(1.0, 0.0, -1.0), 0.5, &materialRight));
 
   // Camera
 
