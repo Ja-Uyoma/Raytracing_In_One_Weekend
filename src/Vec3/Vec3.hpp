@@ -139,6 +139,10 @@ public:
     return (e[0] * e[0]) + (e[1] * e[1]) + (e[2] * e[2]);
   }
 
+  /// Determine if this vector is very close to zero in all its dimensions
+  /// \returns True if the vector is very close to zero in all dimensions, false otherwise
+  bool nearZero() const noexcept;
+
   /// Get a Vec3 with all coordinates randomly generated and in the range [0, 1)
   /// \returns A Vec3 with all coordinates randomly generated and in the range [0, 1)
   static Vec3 createRandomVec();

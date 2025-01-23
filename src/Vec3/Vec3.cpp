@@ -25,8 +25,17 @@
 #include "Vec3.hpp"
 
 #include "Utilities.hpp"
+#include <cmath>
 
 namespace rt::vec3 {
+
+/// Determine if this vector is very close to zero in all its dimensions
+/// \returns True if the vector is very close to zero in all dimensions, false otherwise
+bool Vec3::nearZero() const noexcept
+{
+  static constexpr auto s = 1e-8;
+  return ((std::fabs(e[0] < s)) and (std::fabs(e[1] < s)) and std::fabs(e[2] < s));
+}
 
 /// Get a Vec3 with all coordinates randomly generated and in the range [0, 1)
 /// \returns A Vec3 with all coordinates randomly generated and in the range [0, 1)
