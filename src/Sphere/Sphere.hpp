@@ -41,7 +41,8 @@ class Sphere final : public hittable::Hittable
 {
 public:
   constexpr explicit Sphere() noexcept = default;
-  constexpr explicit Sphere(ray::Point3 const& centre, double radius) noexcept : m_centre(centre), m_radius(radius)
+  constexpr explicit Sphere(ray::Point3 const& centre, double radius, material::Material* material) noexcept
+    : m_centre(centre), m_radius(radius), m_materialPtr(material)
   {
   }
 
@@ -50,7 +51,7 @@ public:
 private:
   ray::Point3 m_centre {};
   double m_radius {};
-  material::Material* materialPtr;
+  material::Material* m_materialPtr;
 };
 
 }   // namespace rt::sphere
