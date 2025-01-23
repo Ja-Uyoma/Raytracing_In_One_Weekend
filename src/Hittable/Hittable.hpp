@@ -28,6 +28,13 @@
 #include "Ray.hpp"
 #include "Vec3.hpp"
 
+// Forward declaration
+namespace rt::material {
+
+class Material;
+
+}
+
 namespace rt::hittable {
 
 class HitRecord
@@ -37,6 +44,7 @@ public:
   vec3::Vec3 normal;
   double t;
   bool frontFace;
+  material::Material* materialPtr;
 
   constexpr void setFaceNormal(ray::Ray const& ray, vec3::Vec3 const& outwardNormal) noexcept
   {
