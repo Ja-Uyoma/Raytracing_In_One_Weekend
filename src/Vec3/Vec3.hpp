@@ -259,6 +259,15 @@ constexpr Vec3 getUnitVector(Vec3 const& v) noexcept
   return v / v.length();
 }
 
+/// Get the direction of a reflected ray
+/// \param[in] incidenceRay The ray of incidence
+/// \param[in] normal The normal
+/// \returns A Vec3 instance representing the direction of the reflected ray
+constexpr Vec3 getReflectedRay(Vec3 const& incidenceRay, Vec3 const& normal) noexcept
+{
+  return incidenceRay - 2 * getDotProduct(incidenceRay, normal) * normal;
+}
+
 /// Get a point (Vec3) that lies in a sphere of unit radius
 /// \returns A point (Vec3) that lies in a sphere of unit radius
 Vec3 getRandomVecInUnitSphere();
