@@ -28,6 +28,7 @@
 #include "Colour.hpp"
 #include "Hittable.hpp"
 #include "HittableList.hpp"
+#include "Material.hpp"
 #include "Ray.hpp"
 #include "Sphere.hpp"
 #include "Utilities.hpp"
@@ -49,8 +50,14 @@ colour::Colour rayColour(ray::Ray const& ray, hittable::Hittable const& world, i
   }
 
   if (world.hit(ray, 0.001, rt::infinity, record)) {
-    auto const target = record.point + record.normal + vec3::getRandomUnitVector();
-    return 0.5 * rayColour(ray::Ray(record.point, target - record.point), world, depthOfRecursion - 1);
+    auto scattered = ray::Ray();
+    auto attenuation = colour::Colour();
+
+    if (record.materialPtr->scatter(ray, record, attenuation, scattered)) {
+      return attenuation * rayColour(scattered, world, depthOfRecursion - 1);
+    }
+
+    return colour::Colour(0, 0, 0);
   }
 
   auto const unitDirection = vec3::getUnitVector(ray.getDirection());
