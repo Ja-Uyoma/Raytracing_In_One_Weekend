@@ -130,6 +130,15 @@ private:
   {
     return (first.r() == second.r()) and (first.g() == second.g()) and (first.b() == second.b());
   }
+
+  /// Multiply two colours
+  /// \param[in] first The first colour
+  /// \param[in] second The second colour
+  /// \returns A new colour equal from the product of the two colours
+  friend constexpr Colour operator*(Colour const& first, Colour const& second) noexcept
+  {
+    return Colour(first.m_data * second.m_data);
+  }
 };
 
 /// \brief Map each individual colour component to the range [0, 255]
