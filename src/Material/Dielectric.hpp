@@ -33,6 +33,7 @@ class Dielectric final : public Material
 {
 public:
   /// Create a new Dielectric instance with the given refractive index
+  /// \param[in] refractiveIndex The index of refraction of this dielectric material
   constexpr explicit Dielectric(double refractiveIndex) noexcept : m_refractiveIndex(refractiveIndex)
   {
   }
