@@ -92,7 +92,7 @@ void renderImage()
   hittable::HittableList world;
 
   auto materialGround = material::Lambertian(colour::Colour(0.8, 0.8, 0.0));
-  auto materialCentre = material::Dielectric(1.5);
+  auto materialCentre = material::Lambertian(colour::Colour(0.1, 0.2, 0.5));
   auto materialLeft = material::Dielectric(1.5);
   auto materialRight = material::Metal(colour::Colour(0.8, 0.6, 0.2), 1.0);
 
