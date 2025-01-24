@@ -33,7 +33,8 @@ namespace rt::material {
 class Metal final : public Material
 {
 public:
-  constexpr explicit Metal(colour::Colour const& albedo) noexcept : m_albedo(albedo)
+  constexpr explicit Metal(colour::Colour const& albedo, double fuzz) noexcept
+    : m_albedo(albedo), m_fuzz(fuzz < 1 ? fuzz : 1)
   {
   }
 
@@ -48,6 +49,7 @@ public:
 
 private:
   colour::Colour m_albedo {};
+  double m_fuzz {};
 };
 
 }   // namespace rt::material

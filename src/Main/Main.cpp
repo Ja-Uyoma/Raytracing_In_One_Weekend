@@ -92,8 +92,8 @@ void renderImage()
 
   auto materialGround = material::Lambertian(colour::Colour(0.8, 0.8, 0.0));
   auto materialCentre = material::Lambertian(colour::Colour(0.7, 0.3, 0.3));
-  auto materialLeft = material::Metal(colour::Colour(0.8, 0.8, 0.8));
-  auto materialRight = material::Metal(colour::Colour(0.8, 0.6, 0.2));
+  auto materialLeft = material::Metal(colour::Colour(0.8, 0.8, 0.8), 0.3);
+  auto materialRight = material::Metal(colour::Colour(0.8, 0.6, 0.2), 1.0);
 
   world.add(new sphere::Sphere(ray::Point3(0, -100.5, -1), 100.0, &materialGround));
   world.add(new sphere::Sphere(ray::Point3(0, 0, -1), 0.5, &materialCentre));

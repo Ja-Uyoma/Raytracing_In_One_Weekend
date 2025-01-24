@@ -43,7 +43,7 @@ using ray::Ray;
 bool Metal::scatter(Ray const& rayIn, HitRecord const& record, Colour& attenuation, Ray& scattered) const noexcept
 {
   auto const reflected = vec3::getReflectedRay(vec3::getUnitVector(rayIn.getDirection()), record.normal);
-  scattered = Ray(record.point, reflected);
+  scattered = Ray(record.point, reflected + m_fuzz * vec3::getRandomVecInUnitSphere());
   attenuation = m_albedo;
 
   return (vec3::getDotProduct(scattered.getDirection(), record.normal) > 0);
