@@ -26,6 +26,7 @@
 
 #include "Colour.hpp"
 #include "Hittable.hpp"
+#include "Utilities.hpp"
 #include "Vec3.hpp"
 
 namespace rt::material {
@@ -52,7 +53,7 @@ bool Dielectric::scatter(Ray const& rayIn, HitRecord const& record, Colour& atte
   bool const cannotRefract = (refractionRatio * sinTheta) > 1.0;
   auto direction = vec3::Vec3();
 
-  if (cannotRefract) {
+  if (cannotRefract or getReflectance(cosTheta, refractionRatio) > getRandomDouble()) {
     direction = vec3::getReflectedRay(unitDirection, record.normal);
   }
   else {
