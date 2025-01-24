@@ -268,6 +268,13 @@ constexpr Vec3 getReflectedRay(Vec3 const& incidenceRay, Vec3 const& normal) noe
   return incidenceRay - 2 * getDotProduct(incidenceRay, normal) * normal;
 }
 
+/// Get the vector of the direction of the refracted ray
+/// \param[in] incidentRay The ray of incidence
+/// \param[in] normal The normal
+/// \param[in] etaIOverEtaT The ratio of the refractive indices of the material and its surrounding medium
+/// \returns A Vec3 instance representing the direction of the refracted ray
+Vec3 getRefractedRay(Vec3 const& incidentRay, Vec3 const& normal, double etaIOverEtaT) noexcept;
+
 /// Get a point (Vec3) that lies in a sphere of unit radius
 /// \returns A point (Vec3) that lies in a sphere of unit radius
 Vec3 getRandomVecInUnitSphere();

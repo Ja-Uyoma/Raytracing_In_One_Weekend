@@ -36,6 +36,19 @@ bool Vec3::nearZero() const noexcept
   static constexpr auto s = 1e-8;
   return ((std::fabs(e[0]) < s) and (std::fabs(e[1]) < s) and std::fabs(e[2]) < s);
 }
+
+/// Get the vector of the direction of the refracted ray
+/// \param[in] incidentRay The ray of incidence
+/// \param[in] normal The normal
+/// \param[in] etaIOverEtaT The ratio of the refractive indices of the material and its surrounding medium
+/// \returns A Vec3 instance representing the direction of the refracted ray
+Vec3 getRefractedRay(Vec3 const& incidentRay, Vec3 const& normal, double etaIOverEtaT) noexcept
+{
+  auto const cosTheta = std::fmin(getDotProduct(-incidentRay, normal), 1.0);
+  auto const rOutPerp = etaIOverEtaT * (incidentRay + cosTheta * normal);
+  auto const rOutParallel = -std::sqrt(std::fabs(1.0 - rOutPerp.lengthSquared())) * normal;
+
+  return rOutPerp + rOutParallel;
 }
 
 /// Get a Vec3 with all coordinates randomly generated and in the range [0, 1)
