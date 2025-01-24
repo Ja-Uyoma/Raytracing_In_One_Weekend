@@ -36,6 +36,7 @@ target_sources(tests
         "${PROJECT_SOURCE_DIR}/src/Vec3/Vec3.cpp"
         "${PROJECT_SOURCE_DIR}/src/Material/Lambertian.cpp"
         "${PROJECT_SOURCE_DIR}/src/Material/Metal.cpp"
+        "${PROJECT_SOURCE_DIR}/src/Material/Dielectric.cpp"
 )
 
 target_compile_features(tests
