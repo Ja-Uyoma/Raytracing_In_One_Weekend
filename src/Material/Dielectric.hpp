@@ -49,6 +49,10 @@ public:
 
 private:
   double m_refractiveIndex {};
+
+  /// Compute the reflectance of the material
+  /// \returns The reflectance of the material
+  static double getReflectance(double cosine, double refractiveIndex) noexcept;
 };
 
 }   // namespace rt::material

@@ -64,4 +64,15 @@ bool Dielectric::scatter(Ray const& rayIn, HitRecord const& record, Colour& atte
   return true;
 }
 
+/// Compute the reflectance of the material
+/// \returns The reflectance of the material
+double Dielectric::getReflectance(double cosine, double refractiveIndex) noexcept
+{
+  // Use Schlick's approximation to compute the reflectance
+
+  auto r0 = (1 - refractiveIndex) / (1 + refractiveIndex);
+  r0 = r0 * r0;
+  return r0 + (1 - r0) * std::pow(1 - cosine, 5);
+}
+
 }   // namespace rt::material
