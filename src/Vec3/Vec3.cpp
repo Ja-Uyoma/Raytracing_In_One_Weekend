@@ -34,7 +34,8 @@ namespace rt::vec3 {
 bool Vec3::nearZero() const noexcept
 {
   static constexpr auto s = 1e-8;
-  return ((std::fabs(e[0] < s)) and (std::fabs(e[1] < s)) and std::fabs(e[2] < s));
+  return ((std::fabs(e[0]) < s) and (std::fabs(e[1]) < s) and std::fabs(e[2]) < s);
+}
 }
 
 /// Get a Vec3 with all coordinates randomly generated and in the range [0, 1)
