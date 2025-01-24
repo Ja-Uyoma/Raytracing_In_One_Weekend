@@ -46,8 +46,20 @@ bool Dielectric::scatter(Ray const& rayIn, HitRecord const& record, Colour& atte
   double const refractionRatio = record.frontFace ? (1.0 / m_refractiveIndex) : m_refractiveIndex;
 
   auto const unitDirection = vec3::getUnitVector(rayIn.getDirection());
-  auto const refracted = vec3::getRefractedRay(unitDirection, record.normal, refractionRatio);
-  scattered = Ray(record.point, refracted);
+  double const cosTheta = std::fmin(vec3::getDotProduct(-unitDirection, record.normal), 1.0);
+  double const sinTheta = std::sqrt(1.0 - cosTheta * cosTheta);
+
+  bool const cannotRefract = (refractionRatio * sinTheta) > 1.0;
+  auto direction = vec3::Vec3();
+
+  if (cannotRefract) {
+    direction = vec3::getReflectedRay(unitDirection, record.normal);
+  }
+  else {
+    direction = vec3::getRefractedRay(unitDirection, record.normal, refractionRatio);
+  }
+
+  scattered = Ray(record.point, direction);
 
   return true;
 }
