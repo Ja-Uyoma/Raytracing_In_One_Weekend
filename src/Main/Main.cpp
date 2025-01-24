@@ -26,6 +26,7 @@
 
 #include "Camera.hpp"
 #include "Colour.hpp"
+#include "Dielectric.hpp"
 #include "Hittable.hpp"
 #include "HittableList.hpp"
 #include "Lambertian.hpp"
@@ -91,8 +92,8 @@ void renderImage()
   hittable::HittableList world;
 
   auto materialGround = material::Lambertian(colour::Colour(0.8, 0.8, 0.0));
-  auto materialCentre = material::Lambertian(colour::Colour(0.7, 0.3, 0.3));
-  auto materialLeft = material::Metal(colour::Colour(0.8, 0.8, 0.8), 0.3);
+  auto materialCentre = material::Dielectric(1.5);
+  auto materialLeft = material::Dielectric(1.5);
   auto materialRight = material::Metal(colour::Colour(0.8, 0.6, 0.2), 1.0);
 
   world.add(new sphere::Sphere(ray::Point3(0, -100.5, -1), 100.0, &materialGround));
