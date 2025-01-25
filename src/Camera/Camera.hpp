@@ -26,19 +26,24 @@
 #define CAMERA_HPP
 
 #include "Ray.hpp"
+#include "Utilities.hpp"
 #include "Vec3.hpp"
+#include <cmath>
 
 namespace rt::camera {
 
 class Camera
 {
 public:
-  /// Default constructor
-  constexpr explicit Camera() noexcept
+  /// Create a Camera instance with the specified vertical field of view and aspect ratio
+  /// \param[in] verticalFieldOfView The angle you see through the portal
+  /// \param[in] aspectRatio The aspect ratio of the camera
+  constexpr explicit Camera(double verticalFieldOfView, double aspectRatio) noexcept
   {
-    constexpr auto aspectRatio = 16.0 / 9.0;
-    constexpr auto viewportHeight = 2.0;
-    constexpr auto viewportWidth = aspectRatio * viewportHeight;
+    auto const theta = degreesToRadians(verticalFieldOfView);
+    auto const h = std::tan(theta / 2);
+    auto const viewportHeight = 2.0 * h;
+    auto const viewportWidth = aspectRatio * viewportHeight;
     constexpr auto focalLength = 1.0;
 
     m_horizontal = vec3::Vec3(viewportWidth, 0, 0);

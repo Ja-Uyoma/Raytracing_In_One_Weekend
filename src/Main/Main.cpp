@@ -104,7 +104,7 @@ void renderImage()
 
   // Camera
 
-  camera::Camera camera;
+  camera::Camera camera(90.0, aspectRatio);
 
   // Render
 
