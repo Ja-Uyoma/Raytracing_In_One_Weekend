@@ -25,6 +25,7 @@ target_sources(app
         "${PROJECT_SOURCE_DIR}/src/Material/Lambertian.cpp"
         "${PROJECT_SOURCE_DIR}/src/Material/Metal.cpp"
         "${PROJECT_SOURCE_DIR}/src/Material/Dielectric.cpp"
+        "${PROJECT_SOURCE_DIR}/src/Camera/Camera.cpp"
 )
 
 target_compile_features(app 
