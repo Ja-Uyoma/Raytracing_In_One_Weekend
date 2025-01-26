@@ -104,7 +104,7 @@ void renderImage()
 
   // Camera
 
-  camera::Camera camera(ray::Point3(-2, 2, 1), ray::Point3(0, 0, -1), vec3::Vec3(0, 1, 0), 90.0, aspectRatio);
+  camera::Camera camera(ray::Point3(-2, 2, 1), ray::Point3(0, 0, -1), vec3::Vec3(0, 1, 0), 20, aspectRatio);
 
   // Render
 
