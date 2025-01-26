@@ -35,20 +35,28 @@ namespace rt::camera {
 class Camera
 {
 public:
-  /// Create a Camera instance with the specified vertical field of view and aspect ratio
+  /// Create a Camera instance with the given parameters
+  /// \param[in] lookFrom The point where the camera is at
+  /// \param[in] lookAt The point the camera is facing
+  /// \param[in] viewUp The sideways tilt of the camera
   /// \param[in] verticalFieldOfView The angle you see through the portal
   /// \param[in] aspectRatio The aspect ratio of the camera
-  constexpr explicit Camera(double verticalFieldOfView, double aspectRatio) noexcept
+  constexpr explicit Camera(ray::Point3 const& lookFrom, ray::Point3 const& lookAt, vec3::Vec3 const& viewUp,
+                            double verticalFieldOfView, double aspectRatio) noexcept
+    : m_origin(lookFrom)
   {
     auto const theta = degreesToRadians(verticalFieldOfView);
     auto const h = std::tan(theta / 2);
     auto const viewportHeight = 2.0 * h;
     auto const viewportWidth = aspectRatio * viewportHeight;
-    constexpr auto focalLength = 1.0;
 
-    m_horizontal = vec3::Vec3(viewportWidth, 0, 0);
-    m_vertical = vec3::Vec3(0, viewportHeight, 0);
-    m_lowerLeftCorner = m_origin - (m_horizontal / 2) - (m_vertical / 2) - vec3::Vec3(0, 0, focalLength);
+    auto const w = vec3::getUnitVector(lookFrom - lookAt);
+    auto const u = vec3::getUnitVector(vec3::getCrossProduct(viewUp, w));
+    auto const v = vec3::getCrossProduct(w, u);
+
+    m_horizontal = viewportWidth * u;
+    m_vertical = viewportHeight * v;
+    m_lowerLeftCorner = m_origin - (m_horizontal / 2) - (m_vertical / 2) - w;
   }
 
   /// Create a ray travelling from the camera to the scene
