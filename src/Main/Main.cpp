@@ -41,26 +41,32 @@
 
 namespace rt {
 
+using colour::Colour;
+using sphere::Sphere;
+using namespace hittable;
+using namespace ray;
+using namespace material;
+
 /// \brief Produce a linear blend of white and blue colours
 /// \param[in] ray The ray whose colour is to be computed
 /// \returns A linear blend of white and blue colours
-colour::Colour rayColour(ray::Ray const& ray, hittable::Hittable const& world, int depthOfRecursion) noexcept
+Colour rayColour(Ray const& ray, Hittable const& world, int depthOfRecursion) noexcept
 {
-  hittable::HitRecord record;
+  HitRecord record;
 
   if (depthOfRecursion <= 0) {
-    return colour::Colour(0, 0, 0);
+    return Colour(0, 0, 0);
   }
 
   if (world.hit(ray, 0.001, rt::infinity, record)) {
-    auto scattered = ray::Ray();
-    auto attenuation = colour::Colour();
+    auto scattered = Ray();
+    auto attenuation = Colour();
 
     if (record.materialPtr->scatter(ray, record, attenuation, scattered)) {
       return attenuation * rayColour(scattered, world, depthOfRecursion - 1);
     }
 
-    return colour::Colour(0, 0, 0);
+    return Colour(0, 0, 0);
   }
 
   auto const unitDirection = vec3::getUnitVector(ray.getDirection());
@@ -70,8 +76,8 @@ colour::Colour rayColour(ray::Ray const& ray, hittable::Hittable const& world, i
   // When t = 0.0, we'll have the colour white
   // In between, we'll have a blend of colours
   // This produces a linear interpolation of the start and end colours
-  static constexpr auto start = colour::Colour(1.0, 1.0, 1.0);
-  static constexpr auto end = colour::Colour(0.5, 0.7, 1.0);
+  static constexpr auto start = Colour(1.0, 1.0, 1.0);
+  static constexpr auto end = Colour(0.5, 0.7, 1.0);
 
   return (1.0 - t) * start + t * end;
 }
@@ -89,23 +95,23 @@ void renderImage()
 
   // World
 
-  hittable::HittableList world;
+  HittableList world;
 
-  auto materialGround = material::Lambertian(colour::Colour(0.8, 0.8, 0.0));
-  auto materialCentre = material::Lambertian(colour::Colour(0.1, 0.2, 0.5));
-  auto materialLeft = material::Dielectric(1.5);
-  auto materialRight = material::Metal(colour::Colour(0.8, 0.6, 0.2), 0.0);
+  auto materialGround = Lambertian(Colour(0.8, 0.8, 0.0));
+  auto materialCentre = Lambertian(Colour(0.1, 0.2, 0.5));
+  auto materialLeft = Dielectric(1.5);
+  auto materialRight = Metal(Colour(0.8, 0.6, 0.2), 0.0);
 
-  world.add(new sphere::Sphere(ray::Point3(0, -100.5, -1), 100.0, &materialGround));
-  world.add(new sphere::Sphere(ray::Point3(0, 0, -1), 0.5, &materialCentre));
-  world.add(new sphere::Sphere(ray::Point3(-1.0, 0.0, -1.0), 0.5, &materialLeft));
-  world.add(new sphere::Sphere(ray::Point3(-1.0, 0.0, -1.0), -0.45, &materialLeft));
-  world.add(new sphere::Sphere(ray::Point3(1.0, 0.0, -1.0), 0.5, &materialRight));
+  world.add(new Sphere(Point3(0, -100.5, -1), 100.0, &materialGround));
+  world.add(new Sphere(Point3(0, 0, -1), 0.5, &materialCentre));
+  world.add(new Sphere(Point3(-1.0, 0.0, -1.0), 0.5, &materialLeft));
+  world.add(new Sphere(Point3(-1.0, 0.0, -1.0), -0.45, &materialLeft));
+  world.add(new Sphere(Point3(1.0, 0.0, -1.0), 0.5, &materialRight));
 
   // Camera
 
-  static constexpr auto lookFrom = ray::Point3(3, 3, 2);
-  static constexpr auto lookAt = ray::Point3(0, 0, -1);
+  static constexpr auto lookFrom = Point3(3, 3, 2);
+  static constexpr auto lookAt = Point3(0, 0, -1);
   static constexpr auto viewUp = vec3::Vec3(0, 1, 0);
   auto const distanceToFocus = (lookFrom - lookAt).length();
   static constexpr auto aperture = 2.0;
@@ -120,12 +126,12 @@ void renderImage()
     std::clog << "\rScanlines remaining: " << j << '\n' << std::flush;
 
     for (std::size_t i = 0; i < imgWidth; ++i) {
-      colour::Colour pixelColour(0, 0, 0);
+      Colour pixelColour(0, 0, 0);
 
       for (std::size_t s = 0; s < samplesPerPixel; ++s) {
         auto u = (static_cast<double>(i) + getRandomDouble()) / (imgWidth - 1);
         auto v = (static_cast<double>(j) + getRandomDouble()) / (imgHeight - 1);
-        ray::Ray ray = camera.getRay(u, v);
+        Ray ray = camera.getRay(u, v);
         pixelColour += rayColour(ray, world, maxDepth);
       }
 
