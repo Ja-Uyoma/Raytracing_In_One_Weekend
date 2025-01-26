@@ -94,7 +94,7 @@ void renderImage()
   auto materialGround = material::Lambertian(colour::Colour(0.8, 0.8, 0.0));
   auto materialCentre = material::Lambertian(colour::Colour(0.1, 0.2, 0.5));
   auto materialLeft = material::Dielectric(1.5);
-  auto materialRight = material::Metal(colour::Colour(0.8, 0.6, 0.2), 1.0);
+  auto materialRight = material::Metal(colour::Colour(0.8, 0.6, 0.2), 0.0);
 
   world.add(new sphere::Sphere(ray::Point3(0, -100.5, -1), 100.0, &materialGround));
   world.add(new sphere::Sphere(ray::Point3(0, 0, -1), 0.5, &materialCentre));
