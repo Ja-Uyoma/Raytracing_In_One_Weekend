@@ -66,10 +66,7 @@ public:
   /// \param[in] u Horizontal offset vector used to move the ray across the scene
   /// \param[in] v Vertical offset vector used to move the ray along the scene
   /// \returns A ray from the camera to the scene
-  constexpr ray::Ray getRay(double u, double v) const noexcept
-  {
-    return ray::Ray(m_origin, m_lowerLeftCorner + (u * m_horizontal) + (v * m_vertical) - m_origin);
-  }
+  ray::Ray getRay(double u, double v) const noexcept;
 
 private:
   ray::Point3 m_origin {0, 0, 0};
