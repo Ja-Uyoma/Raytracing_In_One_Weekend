@@ -41,22 +41,25 @@ public:
   /// \param[in] viewUp The sideways tilt of the camera
   /// \param[in] verticalFieldOfView The angle you see through the portal
   /// \param[in] aspectRatio The aspect ratio of the camera
+  /// \param[in] aperture How big the lens is
+  /// \param[in] focusDistance The distance between the projection point and the image plane
   constexpr explicit Camera(ray::Point3 const& lookFrom, ray::Point3 const& lookAt, vec3::Vec3 const& viewUp,
-                            double verticalFieldOfView, double aspectRatio) noexcept
-    : m_origin(lookFrom)
+                            double verticalFieldOfView, double aspectRatio, double aperture,
+                            double focusDistance) noexcept
+    : m_origin(lookFrom), m_lensRadius(aperture / 2)
   {
     auto const theta = degreesToRadians(verticalFieldOfView);
     auto const h = std::tan(theta / 2);
     auto const viewportHeight = 2.0 * h;
     auto const viewportWidth = aspectRatio * viewportHeight;
 
-    auto const w = vec3::getUnitVector(lookFrom - lookAt);
-    auto const u = vec3::getUnitVector(vec3::getCrossProduct(viewUp, w));
-    auto const v = vec3::getCrossProduct(w, u);
+    m_w = vec3::getUnitVector(lookFrom - lookAt);
+    m_u = vec3::getUnitVector(vec3::getCrossProduct(viewUp, m_w));
+    m_v = vec3::getCrossProduct(m_w, m_u);
 
-    m_horizontal = viewportWidth * u;
-    m_vertical = viewportHeight * v;
-    m_lowerLeftCorner = m_origin - (m_horizontal / 2) - (m_vertical / 2) - w;
+    m_horizontal = focusDistance * viewportWidth * m_u;
+    m_vertical = focusDistance * viewportHeight * m_v;
+    m_lowerLeftCorner = m_origin - (m_horizontal / 2) - (m_vertical / 2) - focusDistance * m_w;
   }
 
   /// Create a ray travelling from the camera to the scene
@@ -73,6 +76,10 @@ private:
   ray::Point3 m_lowerLeftCorner {};
   vec3::Vec3 m_horizontal {};
   vec3::Vec3 m_vertical {};
+  vec3::Vec3 m_u {};
+  vec3::Vec3 m_v {};
+  vec3::Vec3 m_w {};
+  double m_lensRadius {};
 };
 
 }   // namespace rt::camera
