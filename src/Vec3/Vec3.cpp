@@ -88,4 +88,19 @@ Vec3 getRandomUnitVector()
   return getUnitVector(getRandomVecInUnitSphere());
 }
 
+/// Generate a random vector in a unit disk
+/// \returns A random vector in a unit disk
+Vec3 getRandomVecInUnitDisk()
+{
+  while (true) {
+    auto p = Vec3(getRandomDoubleInRange(-1, 1), getRandomDoubleInRange(-1, 1), 0);
+
+    if (p.lengthSquared() >= 1) {
+      continue;
+    }
+
+    return p;
+  }
+}
+
 }   // namespace rt::vec3

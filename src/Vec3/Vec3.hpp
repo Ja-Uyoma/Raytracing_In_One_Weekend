@@ -283,6 +283,10 @@ Vec3 getRandomVecInUnitSphere();
 /// \returns A random unit vector in a unit sphere
 Vec3 getRandomUnitVector();
 
+/// Generate a random vector in a unit disk
+/// \returns A random vector in a unit disk
+Vec3 getRandomVecInUnitDisk();
+
 }   // namespace rt::vec3
 
 #endif
