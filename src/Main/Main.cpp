@@ -99,7 +99,7 @@ void renderImage()
   world.add(new sphere::Sphere(ray::Point3(0, -100.5, -1), 100.0, &materialGround));
   world.add(new sphere::Sphere(ray::Point3(0, 0, -1), 0.5, &materialCentre));
   world.add(new sphere::Sphere(ray::Point3(-1.0, 0.0, -1.0), 0.5, &materialLeft));
-  world.add(new sphere::Sphere(ray::Point3(-1.0, 0.0, -1.0), -0.4, &materialLeft));
+  world.add(new sphere::Sphere(ray::Point3(-1.0, 0.0, -1.0), -0.45, &materialLeft));
   world.add(new sphere::Sphere(ray::Point3(1.0, 0.0, -1.0), 0.5, &materialRight));
 
   // Camera
