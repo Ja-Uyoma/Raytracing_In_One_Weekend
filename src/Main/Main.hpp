@@ -27,6 +27,7 @@
 
 #include "Colour.hpp"
 #include "Hittable.hpp"
+#include "HittableList.hpp"
 #include "Ray.hpp"
 
 namespace rt {
@@ -78,6 +79,10 @@ colour::Colour rayColour(ray::Ray const& ray, hittable::Hittable const& world, i
 
 /// \brief Render a 256 px by 256 px PPM image
 void renderImage();
+
+/// Create a random scene
+/// \returns A HittableList instance containing random scene data
+hittable::HittableList randomScene();
 
 }   // namespace rt
 

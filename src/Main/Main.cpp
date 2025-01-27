@@ -82,6 +82,26 @@ Colour rayColour(Ray const& ray, Hittable const& world, int depthOfRecursion) no
   return (1.0 - t) * start + t * end;
 }
 
+/// Create a random scene
+/// \returns A HittableList instance containing random scene data
+hittable::HittableList randomScene()
+{
+  HittableList world;
+
+  static auto materialGround = Lambertian(Colour(0.8, 0.8, 0.0));
+  static auto materialCentre = Lambertian(Colour(0.1, 0.2, 0.5));
+  static auto materialLeft = Dielectric(1.5);
+  static auto materialRight = Metal(Colour(0.8, 0.6, 0.2), 0.0);
+
+  world.add(new Sphere(Point3(0, -100.5, -1), 100.0, &materialGround));
+  world.add(new Sphere(Point3(0, 0, -1), 0.5, &materialCentre));
+  world.add(new Sphere(Point3(-1.0, 0.0, -1.0), 0.5, &materialLeft));
+  world.add(new Sphere(Point3(-1.0, 0.0, -1.0), -0.45, &materialLeft));
+  world.add(new Sphere(Point3(1.0, 0.0, -1.0), 0.5, &materialRight));
+
+  return world;
+}
+
 /// @brief Render a 256 px by 256 px PPM image
 void renderImage()
 {
@@ -95,18 +115,7 @@ void renderImage()
 
   // World
 
-  HittableList world;
-
-  auto materialGround = Lambertian(Colour(0.8, 0.8, 0.0));
-  auto materialCentre = Lambertian(Colour(0.1, 0.2, 0.5));
-  auto materialLeft = Dielectric(1.5);
-  auto materialRight = Metal(Colour(0.8, 0.6, 0.2), 0.0);
-
-  world.add(new Sphere(Point3(0, -100.5, -1), 100.0, &materialGround));
-  world.add(new Sphere(Point3(0, 0, -1), 0.5, &materialCentre));
-  world.add(new Sphere(Point3(-1.0, 0.0, -1.0), 0.5, &materialLeft));
-  world.add(new Sphere(Point3(-1.0, 0.0, -1.0), -0.45, &materialLeft));
-  world.add(new Sphere(Point3(1.0, 0.0, -1.0), 0.5, &materialRight));
+  HittableList world = randomScene();
 
   // Camera
 
