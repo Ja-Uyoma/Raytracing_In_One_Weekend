@@ -139,11 +139,11 @@ void renderImage()
 
   // Camera
 
-  static constexpr auto lookFrom = Point3(3, 3, 2);
-  static constexpr auto lookAt = Point3(0, 0, -1);
+  static constexpr auto lookFrom = Point3(13, 2, 3);
+  static constexpr auto lookAt = Point3(0, 0, 0);
   static constexpr auto viewUp = vec3::Vec3(0, 1, 0);
-  auto const distanceToFocus = (lookFrom - lookAt).length();
-  static constexpr auto aperture = 2.0;
+  auto const distanceToFocus = 10.0;
+  static constexpr auto aperture = 0.1;
 
   camera::Camera camera(lookFrom, lookAt, viewUp, 20, aspectRatio, aperture, distanceToFocus);
 
