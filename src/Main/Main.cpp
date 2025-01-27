@@ -88,16 +88,11 @@ hittable::HittableList randomScene()
 {
   HittableList world;
 
-  static auto materialGround = Lambertian(Colour(0.8, 0.8, 0.0));
-  static auto materialCentre = Lambertian(Colour(0.1, 0.2, 0.5));
-  static auto materialLeft = Dielectric(1.5);
-  static auto materialRight = Metal(Colour(0.8, 0.6, 0.2), 0.0);
-
-  world.add(new Sphere(Point3(0, -100.5, -1), 100.0, &materialGround));
-  world.add(new Sphere(Point3(0, 0, -1), 0.5, &materialCentre));
-  world.add(new Sphere(Point3(-1.0, 0.0, -1.0), 0.5, &materialLeft));
-  world.add(new Sphere(Point3(-1.0, 0.0, -1.0), -0.45, &materialLeft));
-  world.add(new Sphere(Point3(1.0, 0.0, -1.0), 0.5, &materialRight));
+  world.add(new Sphere(Point3(0, -100.5, -1), 100.0, new Lambertian(Colour(0.8, 0.8, 0.0))));
+  world.add(new Sphere(Point3(0, 0, -1), 0.5, new Lambertian(Colour(0.1, 0.2, 0.5))));
+  world.add(new Sphere(Point3(-1.0, 0.0, -1.0), 0.5, new Dielectric(1.5)));
+  world.add(new Sphere(Point3(-1.0, 0.0, -1.0), -0.45, new Dielectric(1.5)));
+  world.add(new Sphere(Point3(1.0, 0.0, -1.0), 0.5, new Metal(Colour(0.8, 0.6, 0.2), 0.0)));
 
   return world;
 }

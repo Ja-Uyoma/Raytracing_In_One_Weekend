@@ -26,32 +26,30 @@
 #define SPHERE_HPP
 
 #include "Hittable.hpp"
+#include "Material.hpp"
 #include "Ray.hpp"
-
-// Forward declaration
-namespace rt::material {
-
-class Material;
-
-}
+#include <memory>
 
 namespace rt::sphere {
 
 class Sphere final : public hittable::Hittable
 {
 public:
+  /// Create a default Sphere instance
   constexpr explicit Sphere() noexcept = default;
-  constexpr explicit Sphere(ray::Point3 const& centre, double radius, material::Material* material) noexcept
-    : m_centre(centre), m_radius(radius), m_materialPtr(material)
-  {
-  }
+
+  /// Create a Sphere instance with the specified centre, radius, and material
+  /// \param[in] centre The centre of the sphere
+  /// \param[in] radius The radius of the sphere
+  /// \param[in] material The material the sphere is made of
+  explicit Sphere(ray::Point3 const& centre, double radius, material::Material* material) noexcept;
 
   bool hit(ray::Ray const& ray, double tMin, double tMax, hittable::HitRecord& record) const noexcept override;
 
 private:
   ray::Point3 m_centre {};
   double m_radius {};
-  material::Material* m_materialPtr;
+  std::unique_ptr<material::Material> m_materialPtr;
 };
 
 }   // namespace rt::sphere

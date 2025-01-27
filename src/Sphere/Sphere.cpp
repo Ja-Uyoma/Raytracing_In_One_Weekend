@@ -29,6 +29,15 @@
 
 namespace rt::sphere {
 
+/// Create a Sphere instance with the specified centre, radius, and material
+/// \param[in] centre The centre of the sphere
+/// \param[in] radius The radius of the sphere
+/// \param[in] material The material the sphere is made of
+Sphere::Sphere(ray::Point3 const& centre, double radius, material::Material* material) noexcept
+  : m_centre(centre), m_radius(radius), m_materialPtr(material)
+{
+}
+
 bool Sphere::hit(ray::Ray const& ray, double tMin, double tMax, hittable::HitRecord& record) const noexcept
 {
   auto const oc = ray.getOrigin() - m_centre;
@@ -59,7 +68,7 @@ bool Sphere::hit(ray::Ray const& ray, double tMin, double tMax, hittable::HitRec
   record.point = ray.at(record.t);
   auto const& outwardNormal = (record.point - m_centre) / m_radius;
   record.setFaceNormal(ray, outwardNormal);
-  record.materialPtr = m_materialPtr;
+  record.materialPtr = m_materialPtr.get();
 
   return true;
 }
