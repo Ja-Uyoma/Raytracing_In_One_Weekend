@@ -88,11 +88,36 @@ hittable::HittableList randomScene()
 {
   HittableList world;
 
-  world.add(new Sphere(Point3(0, -100.5, -1), 100.0, new Lambertian(Colour(0.8, 0.8, 0.0))));
-  world.add(new Sphere(Point3(0, 0, -1), 0.5, new Lambertian(Colour(0.1, 0.2, 0.5))));
-  world.add(new Sphere(Point3(-1.0, 0.0, -1.0), 0.5, new Dielectric(1.5)));
-  world.add(new Sphere(Point3(-1.0, 0.0, -1.0), -0.45, new Dielectric(1.5)));
-  world.add(new Sphere(Point3(1.0, 0.0, -1.0), 0.5, new Metal(Colour(0.8, 0.6, 0.2), 0.0)));
+  world.add(new Sphere(Point3(0, -1000, 0), 1000, new Lambertian(Colour(0.5, 0.5, 0.5))));
+
+  for (int a = -11; a < 11; ++a) {
+    for (int b = -11; b < 11; ++b) {
+      auto const chooseMaterial = getRandomDouble();
+      auto const centre = Point3(a + 0.9 * getRandomDouble(), 0.2, b + 0.9 * getRandomDouble());
+
+      if ((centre - Point3(4, 0.2, 0)).length() > 0.9) {
+        // Diffuse
+        if (chooseMaterial < 0.8) {
+          auto const albedo = Colour::getRandomColour() * Colour::getRandomColour();
+          world.add(new Sphere(centre, 0.2, new Lambertian(albedo)));
+        }
+        // Metal
+        else if (chooseMaterial < 0.95) {
+          auto const albedo = Colour::getRandomColour(0.5, 1);
+          auto const fuzz = getRandomDoubleInRange(0, 0.5);
+          world.add(new Sphere(centre, 0.2, new Metal(albedo, fuzz)));
+        }
+        // Glass
+        else {
+          world.add(new Sphere(centre, 0.2, new Dielectric(1.5)));
+        }
+      }
+    }
+  }
+
+  world.add(new Sphere(Point3(0, 1, 0), 1.0, new Dielectric(1.5)));
+  world.add(new Sphere(Point3(-4, 1, 0), 1.0, new Lambertian(Colour(0.4, 0.2, 0.1))));
+  world.add(new Sphere(Point3(4, 1, 0), 1.0, new Metal(Colour(0.7, 0.6, 0.5), 0.0)));
 
   return world;
 }
