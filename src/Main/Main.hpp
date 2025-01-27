@@ -29,11 +29,6 @@
 #include "Hittable.hpp"
 #include "Ray.hpp"
 
-// Forward declaration;
-namespace rt::hittable {
-class HittableList;
-}
-
 namespace rt {
 
 /// \brief Determine if a ray has hit the sphere in the viewport
@@ -83,10 +78,6 @@ colour::Colour rayColour(ray::Ray const& ray, hittable::Hittable const& world, i
 
 /// \brief Render a 256 px by 256 px PPM image
 void renderImage();
-
-/// Generate a random scene
-/// \returns A HittableList instance containing random scene data
-hittable::HittableList randomScene();
 
 }   // namespace rt
 
