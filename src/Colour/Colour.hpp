@@ -101,6 +101,16 @@ public:
     return *this;
   }
 
+  /// Create a random Colour
+  /// \returns A random Colour
+  static Colour getRandomColour();
+
+  /// Create a random Colour with colour values within the given range
+  /// \param[in] min The minimum colour value
+  /// \param[in] max The maximum colour value
+  /// \returns A random Colour
+  static Colour getRandomColour(double min, double max);
+
 private:
   vec3::Vec3 m_data {};
 

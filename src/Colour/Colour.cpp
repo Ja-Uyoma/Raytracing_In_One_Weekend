@@ -24,9 +24,26 @@
 
 #include "Colour.hpp"
 
+#include "Vec3.hpp"
 #include <algorithm>
 
 namespace rt::colour {
+
+/// Create a random Colour
+/// \returns A random Colour
+Colour Colour::getRandomColour()
+{
+  return Colour(vec3::Vec3::createRandomVec());
+}
+
+/// Create a random Colour with colour values within the given range
+/// \param[in] min The minimum colour value
+/// \param[in] max The maximum colour value
+/// \returns A random Colour
+Colour Colour::getRandomColour(double min, double max)
+{
+  return Colour(vec3::Vec3::createRandomVecInRange(min, max));
+}
 
 /// \brief Map each individual colour component to the range [0, 255]
 /// \param[in] colour The colour to be mapped to the specified range
